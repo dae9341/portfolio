@@ -35,6 +35,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+body {
+  font-size: 14px;
+  color: #333333; }
+
 a {
-  text-decoration: none;
-  color: orange; }
+  text-decoration: none; }

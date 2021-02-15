@@ -2,20 +2,94 @@
 
 var gulp = require("gulp");
 var sass = require("gulp-sass"); // sass 컴파일
+var concat = require("gulp-concat"); // concat
+var babel = require('gulp-babel'); // babel
 
 var root = "../dhroot/"; // root
 var src = "src/";  // src
 var entry = root+src+"entry/"; // 엔트리 경로
 var uikit = root+src+"inc/uikit/"; // uikit 경로
-var dist = root+src+"/css/"; //디스트 경로
+var page = root+src+"page/"; // page 경로
+var dist_css = root+src+"css/"; //디스트CSS 경로
+var dist_js = root+src+"js/"; //디스트CSS 경로
 
 
+/* sass 컴파일 */
 gulp.task("sass", function () {
    return gulp.src(entry+"scss/*.scss")
        .pipe(sass().on("error", sass.logError))
-       .pipe(gulp.dest(dist));
+       .pipe(gulp.dest(dist_css));
 });
 
-gulp.task("sass:watch",function () {
-    return gulp.watch([entry+"scss/*.scss", uikit+"**/*.scss"],gulp.series("sass"));
+/* js_vendor 컨캣 */
+gulp.task("js:vendor",function () {
+    return gulp.src([entry+"vendor/jQuery_3.5.1.js", entry+"vendor/Swiper_6.4.10.js"])
+        .pipe(concat("kdh_vendor.js"))
+        .pipe(gulp.dest(dist_js))
 });
+
+/* css_vendor 컨캣 */
+gulp.task("css:vendor", function () {
+    return gulp.src(entry+"vendor/css/*.css")
+        .pipe(concat("kdh_vendor.css"))
+        .pipe(gulp.dest(dist_css));
+});
+
+/*js uikit atom 컨캣*/
+gulp.task("js:atom",function () {
+    return gulp.src([uikit+"_atom/**/*.js",entry+"js/kdh_uikit_atom.js"])
+        .pipe(concat("kdh_uikit_atom.js"))
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js))
+});
+
+/*js uikit module 컨캣*/
+gulp.task("js:module",function () {
+    return gulp.src([uikit+"_module/**/*.js",entry+"js/kdh_uikit_module.js"])
+        .pipe(concat("kdh_uikit_module.js"))
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js))
+});
+
+/*js uikit component 컨캣*/
+gulp.task("js:component",function () {
+    return gulp.src([uikit+"_component/**/*.js",entry+"js/kdh_uikit_component.js"])
+        .pipe(concat("kdh_uikit_component.js"))
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js))
+});
+
+gulp.task("js" , function () {
+    return gulp.src([uikit+"**/*.js",entry+"js/*.js"])
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js));
+});
+
+/* sass 와치 */
+gulp.task("sass:watch",function () {
+    return gulp.watch([entry+"scss/*.scss", uikit+"**/*.scss",page+"**/*.scss"],gulp.series("sass"));
+});
+
+/* js 와치 */
+gulp.task("js:watch", function () {
+    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component"]));
+});
+
+
+
+
+/* 실행부 */
+
+/* 와치 통합 */
+gulp.task("w" , gulp.parallel(["sass:watch","js:watch"]));
+
+/* 벤더 통합 */
+gulp.task("vendor", gulp.parallel(["js:vendor","css:vendor"]));
