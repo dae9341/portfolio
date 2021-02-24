@@ -10,7 +10,9 @@
     <div class="p-main__head">
         메인페이지
         <div class="p-main__head__banner">
-            <jsp:include page="../../../src/inc/uikit/_component/bannerSwiper/bannerSwiper.jsp"></jsp:include>
+            <jsp:include page="../../../src/inc/uikit/_component/bannerSwiper/bannerSwiper.jsp">
+                <jsp:param name="id" value="mainBannerSwiper"/>
+            </jsp:include>
         </div>
     </div>
 </div>
