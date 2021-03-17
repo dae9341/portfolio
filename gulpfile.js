@@ -5,13 +5,18 @@ var sass = require("gulp-sass"); // sass 컴파일
 var concat = require("gulp-concat"); // concat
 var babel = require('gulp-babel'); // babel
 
-var root = "../dhroot/"; // root
+var root = "../sample/"; // root
 var src = "src/";  // src
 var entry = root+src+"entry/"; // 엔트리 경로
 var uikit = root+src+"inc/uikit/"; // uikit 경로
 var page = root+src+"page/"; // page 경로
 var dist_css = root+src+"css/"; //디스트CSS 경로
 var dist_js = root+src+"js/"; //디스트CSS 경로
+
+
+//독립모듈
+var independent = root+src+"independent/"; // independent 경로
+var independent_dist_css = independent+"/css/"; //디스트 CSS 경로
 
 
 /* sass 컴파일 */
@@ -84,8 +89,6 @@ gulp.task("js:watch", function () {
 });
 
 
-
-
 /* 실행부 */
 
 /* 와치 통합 */
@@ -93,3 +96,21 @@ gulp.task("w" , gulp.parallel(["sass:watch","js:watch"]));
 
 /* 벤더 통합 */
 gulp.task("vendor", gulp.parallel(["js:vendor","css:vendor"]));
+
+
+
+/*임시*/
+
+/* sass 컴파일 */
+gulp.task("sass:inde", function () {
+    return gulp.src(independent+"scss/*.scss")
+        .pipe(sass().on("error", sass.logError))
+        .pipe(gulp.dest(independent_dist_css))
+});
+
+gulp.task("w:inde", function () {
+    return gulp.watch([independent+"**/*.scss"],gulp.series("sass:inde"));
+});
+
+
+

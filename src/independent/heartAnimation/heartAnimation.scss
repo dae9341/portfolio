@@ -1,0 +1,8 @@
+/*! 하트 애니메이션 */
+.heartAnimation{position: absolute; top:0; left: 0; width: 200px; height: 500px;
+  .heart{display: block; width: 10px; height: 10px; background-color: #ea2027; transform: rotate(45deg); position: absolute;
+    &:before{content:""; display: block; width: 100%; height: 100%; background-color: inherit; position: absolute; top:0; left: -50%; border-radius: 50%;}
+    &:after{content:""; display: block; width: 100%; height: 100%; background-color: inherit; position: absolute; top:-50%; left: 0; border-radius: 50%;}
+  }
+
+}

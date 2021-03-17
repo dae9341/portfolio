@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi, viewport-fit=cover">
+    <title>Title</title>
+    <script src="../../entry/vendor/jQuery_3.5.1.js"></script>
+    <script src="heartAnimation.js"></script>
+    <link rel="stylesheet" href="../../css/kdh_base.css">
+    <link rel="stylesheet" href="../css/include.css">
+</head>
+<body>
+<div class="heartAnimation" id="heartAnimation">
+
+</div>
+<script>
+    var heartAni;
+    $(function () {
+        heartAni = new heartAnimation("#heartAnimation",{
+            minSize: 9,
+            maxSize: 14,
+            speed:900,
+            transition:"bottom 3s, left 2s, opacity 4s"
+        })
+    })
+</script>
+</body>
+</html>

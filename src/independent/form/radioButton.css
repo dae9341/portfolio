@@ -1,0 +1,6 @@
+.a-radioButton{cursor: pointer;}
+.a-radioButton__input{-webkit-appearance: none;-moz-appearance: none;appearance: none; margin: 0; padding: 0;}
+
+.a-radioButton__name{display: flex; align-items: center; position: relative;}
+.a-radioButton__name::before{content:''; display: block; border:1px solid #d1d1d1; border-radius: 50%; width: 18px; height: 18px;margin-right: 5px;}
+.a-radioButton__input:checked+.a-radioButton__name::before{background: darkslategrey}
