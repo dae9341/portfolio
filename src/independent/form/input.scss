@@ -1,0 +1,8 @@
+.a-formClearBtn{width: 200px; height: 30px; display: block; position: relative;;
+  &__input{width: 100%; height: 100%; padding: 0; margin: 0;display: block;box-sizing: border-box;}
+  &__clear{width: 20px; height: 20px;position: absolute;top: 50%;right: 5px;margin-top: -10px; display: none;
+    &.-init{display: block;}
+    &:before{ content: ""; display: block; width: 100%; height: 2px; background-color: #333333; transform: rotate(45deg);position: absolute;top: 50%;left: 50%;margin-top: -1px;margin-left: -50%;}
+    &:after{ content: ""; display: block; width: 100%; height: 2px; background-color: #333333; transform: rotate(-45deg);position: absolute;top: 50%;left: 50%;margin-top: -1px;margin-left: -50%;}
+  }
+}

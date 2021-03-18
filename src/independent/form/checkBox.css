@@ -1,6 +1,0 @@
-.a-checkBox{}
-.a-checkBox__input{-webkit-appearance: none;-moz-appearance: none;appearance: none; margin: 0; padding: 0;}
-
-.a-checkBox__name{display: flex; align-items: center; }
-.a-checkBox__name::before{content:''; display: block; border:1px solid #d1d1d1; width: 18px; height: 18px;margin-right: 5px;}
-.a-checkBox__input:checked+.a-checkBox__name::before{border:1px solid darkslategrey; background: darkslategrey}

@@ -5,15 +5,23 @@
     <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi, viewport-fit=cover">
     <title>Title</title>
     <script src="../../entry/vendor/jQuery_3.5.1.js"></script>
+    <script src="input.js"></script>
     <link rel="stylesheet" href="../../css/kdh_base.css">
     <link rel="stylesheet" href="../css/include.css">
 </head>
 <body>
-<label class="a-checkBox">
-    <input type="checkbox" name="" tabindex="" class="a-checkBox__input">
-    <i class="a-checkBox__virtualBox"></i>
-    <span class="a-checkBox__name">체크박스</span>
-</label>
+<span class="a-formClearBtn" id="formClearBtn">
+    <input type="text" class="a-formClearBtn__input" placeholder="입력">
 
+    <a href="" class="a-formClearBtn__clear"></a>
+
+</span>
+<script>
+    var test;
+    $(function () {
+        test = new inputClear("#formClearBtn");
+    });
+
+</script>
 </body>
 </html>
