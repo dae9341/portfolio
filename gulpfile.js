@@ -3,6 +3,7 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass"); // sass 컴파일
 var concat = require("gulp-concat"); // concat
+// var rev = require("gulp-rev"); // rev (hash값으로 리비전번호를 부여)
 var babel = require('gulp-babel'); // babel
 
 var root = "../sample/"; // root

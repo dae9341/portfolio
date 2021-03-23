@@ -3,6 +3,7 @@ function fadeSlider(wrapperId, option) {
     var opt = $.extend({
         startIdx : 0,
         speed:1000,
+        isPlay:true,
 
     },option);
 
@@ -22,12 +23,26 @@ function fadeSlider(wrapperId, option) {
         if(toIdx >= imgLayer_len){
             toIdx = 0;
         }
-        console.log(nowIdx,toIdx);
 
-        $imgLayer.find("li").eq(nowIdx).css({"opacity":0,"left":"98px","z-index":1});
-        $imgLayer.find("li").eq(toIdx).css({"opacity":1,"left":"0px","z-index":20});
+        if(!opt.isPlay){
+            return;
+        }else{
 
-        me.index = toIdx;
+            if(nowIdx<toIdx){
+                $imgLayer.find("li").eq(nowIdx).css({"opacity":0,"left":"0px","z-index":1});
+                $imgLayer.find("li").eq(toIdx).css({"opacity":1,"left":"98px","z-index":20});
+            }else if(nowIdx>toIdx){
+                $imgLayer.find("li").eq(nowIdx).css({"opacity":0,"left":"98px","z-index":1});
+                $imgLayer.find("li").eq(toIdx).css({"opacity":1,"left":"0px","z-index":20});
+
+            }else{
+                return;
+            }
+
+
+            me.index = toIdx;
+
+        }
     };
 
     me.start = function(){
