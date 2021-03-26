@@ -1,0 +1,21 @@
+.list{
+  $li_height:50px; $border:1px solid #000; $border-color:#000;
+  width: 100%; display: flex; align-items: center; flex-wrap:wrap; border-left:$border; border-top:$border; position: relative;
+  li{width: 100%; height: $li_height; border-bottom: $border; border-right: $border; box-sizing: border-box;}
+
+  &.type-full{
+    &::before{content:''; position: absolute;width: 1px;height: 100%;right: 0;bottom: 0;background-color: $border-color;}
+    &::after{content:''; position: absolute;width: 100%;height: 1px;left: 0;bottom: 0;background-color: $border-color;}
+  }
+  &.type-waffle{
+    border:0;
+    &::before{content:''; position: absolute;width: 1px;height: 100%;right: 0;bottom: 0;background-color: #fff;}
+    &::after{content:''; position: absolute;width: 100%;height: 1px;left: 0;bottom: 0;background-color: #fff;}
+  }
+
+  &.-row6{ li{width: 16.666666%;} }
+  &.-row5{ li{width: 20%;} }
+  &.-row4{ li{width: 25%;} }
+  &.-row3{ li{width: 33.33333%;} }
+  &.-row2{ li{width: 50%;} }
+}
