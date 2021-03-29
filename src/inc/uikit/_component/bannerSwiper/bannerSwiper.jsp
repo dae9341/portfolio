@@ -22,6 +22,10 @@
                 <div class="swiper-slide">Slide 3</div>
                 <div class="swiper-slide">Slide 4</div>
                 <div class="swiper-slide">Slide 5</div>
+                <div class="swiper-slide">Slide 6</div>
+                <div class="swiper-slide">Slide 7</div>
+                <div class="swiper-slide">Slide 8</div>
+                <div class="swiper-slide">Slide 9</div>
             </div>
             <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
@@ -34,13 +38,11 @@
 
         <!--카운터-->
         <div class="c-bannerSwiper__counter">
-            <jsp:include page="../../_module/swiperPiece/swiperCounter.jsp"></jsp:include>
         </div>
         <!--//카운터-->
 
         <!--바 표시-->
         <div class="c-bannerSwiper__bar">
-            <jsp:include page="../../_module/swiperPiece/swiperBar.jsp"></jsp:include>
         </div>
         <!--//바 표시-->
     </div>
@@ -49,7 +51,10 @@
 <script>
     var <%=id%>;
     $(function () {
-        <%=id%> = new kdh.component.bannerSwiper("<%=id%>",{});
-        console.log(<%=id%>);
+        <%=id%> = new kdh.component.bannerSwiper("#<%=id%>",{
+            autoplay:true,
+            counter:true,
+            bar:true
+        });
     })
 </script>

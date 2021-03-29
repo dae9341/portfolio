@@ -6,6 +6,7 @@ var concat = require("gulp-concat"); // concat
 // var rev = require("gulp-rev"); // rev (hash값으로 리비전번호를 부여)
 var babel = require('gulp-babel'); // babel
 
+
 var root = "../sample/"; // root
 var src = "src/";  // src
 var entry = root+src+"entry/"; // 엔트리 경로
@@ -39,6 +40,14 @@ gulp.task("css:vendor", function () {
     return gulp.src(entry+"vendor/css/*.css")
         .pipe(concat("kdh_vendor.css"))
         .pipe(gulp.dest(dist_css));
+});
+
+gulp.task("js:base" , function () {
+    return gulp.src([entry+"js/kdh_base.js"])
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js));
 });
 
 /*js uikit atom 컨캣*/
@@ -86,7 +95,7 @@ gulp.task("sass:watch",function () {
 
 /* js 와치 */
 gulp.task("js:watch", function () {
-    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component"]));
+    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:base"]));
 });
 
 

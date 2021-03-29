@@ -8,6 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="m-swiperBar">
     <div class="m-swiperBar__active">
-        1
+
     </div>
 </div>
