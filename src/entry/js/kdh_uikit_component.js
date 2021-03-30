@@ -1,3 +1,3 @@
 kdh.component = {
-    bannerSwiper : __bannerSwiper,
+    bannerSwiper : __bannerSwiper, // 배너 스와이퍼
 };

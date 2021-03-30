@@ -107,6 +107,9 @@ gulp.task("w" , gulp.parallel(["sass:watch","js:watch"]));
 /* 벤더 통합 */
 gulp.task("vendor", gulp.parallel(["js:vendor","css:vendor"]));
 
+/* 빌드 통합 */
+gulp.task("kdh", gulp.series(["vendor","sass","js:base","js:atom","js:module","js:component"]));
+
 
 
 /*임시*/

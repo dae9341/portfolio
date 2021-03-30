@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/../src/css/kdh_uikit_atom.css">
     <link rel="stylesheet" href="/../src/css/kdh_uikit_module.css">
     <link rel="stylesheet" href="/../src/css/kdh_uikit_component.css">
+    <link rel="stylesheet" href="/../src/css/kdh_uikit_template.css">
     <link rel="stylesheet" href="/../src/css/kdh_page_main.css">
 
     <script type="text/javascript" src="../../../src/js/kdh_vendor.js"></script>

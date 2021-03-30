@@ -15,6 +15,24 @@
             </jsp:include>
         </div>
     </div>
+<%--
+    <div class="p-main__content">
+        <div class="p-main__content__list">
+            <ul class="t-boxList -row4 type-default">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+
+    </div>--%>
 </div>
 <!-- UI footer -->
 <jsp:include page="../../inc/uikit/footer/footer.jsp"></jsp:include>

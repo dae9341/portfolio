@@ -11,7 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/src/page/main/main.jsp">헤더</a>
+<a href="/src/page/main/main.jsp">메인</a>
+<a href=""></a>
 
+<div class="">
+    
+</div>
 </body>
 </html>
