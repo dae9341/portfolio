@@ -19,6 +19,7 @@
     <script type="text/javascript" src="../../../src/js/kdh_uikit_atom.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_module.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_component.js"></script>
+    <script type="text/javascript" src="../../../src/js/kdh_uikit_template.js"></script>
     <title>KDH</title>
 </head>
 <body>

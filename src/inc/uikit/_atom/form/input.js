@@ -24,6 +24,7 @@ function __input(inputId){
         return false;
     });
 
+    console.log(typeof pwViewButton);
     pwViewButton.on("click", function (){
         if($(this).find("input[type=checkbox]").prop("checked")){
             $(this).find("input[type=checkbox]").prop("checked",false);

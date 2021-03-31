@@ -28,25 +28,49 @@
     String placeholder = (request.getParameter("placeholder") == null ) ? "입력하세요." : request.getParameter("placeholder");
 
     /*
+     * isDisabled 입력불가 사용 여부
+     * true: 사용
+     * false: 미사용(디폴트)
+     * */
+    boolean isDisabled = (request.getParameter("isDisabled") == null ) ? false : Boolean.parseBoolean(request.getParameter("isDisabled"));
+    String disabledClass = isDisabled ? "-disabled":"";
+
+
+    /*
     * isClearFunc 내용입력시 삭제 버튼 사용 여부
     * true: 사용(디폴트)
     * false: 미사용
     * */
     boolean isClearFunc = (request.getParameter("isClearFunc") == null ) ? true : Boolean.parseBoolean(request.getParameter("isClearFunc"));
+
+
+    /*
+     * isPwToggleFunc 패스워드 보이기/가리기 사용 여부
+     * true: 사용
+     * false: 미사용(디폴트)
+     * */
+    boolean isPwToggleFunc = (request.getParameter("isPwToggleFunc") == null ) ? false : Boolean.parseBoolean(request.getParameter("isPwToggleFunc"));
+
 %>
-<span class="a-input" id="<%=id%>">
-    <input type="<%=type%>" class="a-input__area" placeholder="<%=placeholder%>">
+<span class="a-input <%=disabledClass%>" id="<%=id%>">
+    <input type="<%=type%>" class="a-input__area" placeholder="<%=placeholder%>" <%if(isDisabled){%>disabled="disabled" <%}%> >
 
-    <%if(isClearFunc){%>
-    <a href="#" class="a-input__clear"></a>
+
+    <%if(!isDisabled && (isClearFunc || isPwToggleFunc)){%>
+    <span class="a-input__btns">
+        <%if(isClearFunc){%>
+        <a href="#" class="a-input__clear"></a>
+        <%}%>
+
+
+        <%if(type.equals("password")&& isPwToggleFunc){%>
+        <label for="<%=id%>PwView" class="a-input__pwView">
+            <input type="checkbox" id="<%=id%>PwView">
+            <span class="a-input__pwView__text">보이기</span>
+        </label>
+        <%}%>
+    </span>
     <%}%>
-
-
-    <label for="<%=id%>PwView" class="a-input__pwView">
-        <input type="checkbox" id="<%=id%>PwView">
-        <span class="a-input__pwView__text">보이기</span>
-    </label>
-
 </span>
 <script>
     <%if(isClearFunc){%>
