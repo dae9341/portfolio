@@ -57,11 +57,11 @@
             <jsp:param name="isDisabled" value="true"></jsp:param>
         </jsp:include>
     </div>
-
+<%--
     <div class="wsgFrame__layout">
         <p class="wsgFrame__layout__title">탭 형식 배너</p>
         <jsp:include page="../../../src/inc/uikit/_template/tabBanner/tabBanner.jsp"></jsp:include>
-    </div>
+    </div>--%>
 </div>
 
 <!--코드 footer-->

@@ -29,7 +29,6 @@
     var test;
     $(function (){
         test = new kdh.template.tabBanner("#tabBanner",{
-
         });
     });
 </script>

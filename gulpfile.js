@@ -90,6 +90,16 @@ gulp.task("js:template",function () {
         .pipe(gulp.dest(dist_js))
 });
 
+/*js uikit common 컨캣*/
+gulp.task("js:common",function () {
+    return gulp.src([uikit+"common/**/*.js",entry+"js/kdh_uikit_common.js"])
+        .pipe(concat("kdh_uikit_common.js"))
+        .pipe(babel({
+            presets:['@babel/env']
+        }))
+        .pipe(gulp.dest(dist_js))
+});
+
 gulp.task("js" , function () {
     return gulp.src([uikit+"**/*.js",entry+"js/*.js"])
         .pipe(babel({
@@ -105,7 +115,7 @@ gulp.task("sass:watch",function () {
 
 /* js 와치 */
 gulp.task("js:watch", function () {
-    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:template","js:base"]));
+    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:template","js:base","js:common"]));
 });
 
 
@@ -115,7 +125,7 @@ gulp.task("js:watch", function () {
 gulp.task("vendor", gulp.parallel(["js:vendor","css:vendor"]));
 
 /* 빌드 통합 */
-gulp.task("kdh", gulp.series(["vendor","sass","js:base","js:atom","js:module","js:component","js:template"]));
+gulp.task("kdh", gulp.series(["vendor","sass","js:base","js:common","js:atom","js:module","js:component","js:template"]));
 
 /* 와치 통합 */
 gulp.task("w" , gulp.series(["kdh"], gulp.parallel(["sass:watch","js:watch"])) );

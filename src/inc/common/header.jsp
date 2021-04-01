@@ -16,6 +16,7 @@
 
     <script type="text/javascript" src="../../../src/js/kdh_vendor.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_base.js"></script>
+    <script type="text/javascript" src="../../../src/js/kdh_uikit_common.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_atom.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_module.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_component.js"></script>
