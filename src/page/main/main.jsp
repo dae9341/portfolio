@@ -31,10 +31,13 @@
 
     <div>
         <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
-        <jsp:include page="../wsgFrame/wsgFrame.jsp"></jsp:include>
     </div>
 
+    <a href="#" onclick="kdh.common.layer.open('#layerTest1'); return false;">레이어 테스트</a>
 
+    <jsp:include page="../../../src/inc/uikit/common/layer/layer.jsp">
+        <jsp:param name="id" value="layerTest1"></jsp:param>
+    </jsp:include>
 <%--
     <div class="p-main__content">
         <div class="p-main__content__list">
