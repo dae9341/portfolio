@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--코드 header-->
-<jsp:include page="../../../src/inc/common/header.jsp"></jsp:include>
+<jsp:include page="../../../src/inc/common/__header.jsp"></jsp:include>
 <!--//코드 header-->
 <style>
     .wsgFrame__layout{margin-bottom: 20px;}

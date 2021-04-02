@@ -1,3 +1,4 @@
 [
-  {"jsp":"홍길동", "href": 27, "desc":"서울시"},
+  {"atomic":"atom", "jsp":"__checkbox.jsp", "href": "/src/inc/uikit/_atom/form/__checkbox.jsp", "desc":"공통 > 폼 형식 > 체크박스"},
+  {"atomic":"atom", "jsp":"__input.jsp", "href": "/src/inc/uikit/_atom/form/__input.jsp", "desc":"공통 > 폼 형식 > 인풋"}
 ]
