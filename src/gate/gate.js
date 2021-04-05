@@ -17,7 +17,8 @@ function gateSet() {
             $("#gate").append(
                 "<div class='atom'><h1>ATOM</h1><ul>"+ul.atom+"</ul></div>"+
                 "<div class='module'><h1>MODULE</h1><ul>"+ul.module+"</ul></div>"+"" +
-                "<div class='component'><h1>COMPONENT</h1><ul>"+ul.component+"</ul></div>"
+                "<div class='component'><h1>COMPONENT</h1><ul>"+ul.component+"</ul></div>"+
+                "<div class='template'><h1>TEMPLATE</h1><ul>"+ul.template+"</ul></div>"
             );
         },
         error   : function () {
@@ -45,7 +46,8 @@ function gateSet() {
         var LIS={
             atom:"",
             module:"",
-            component:""
+            component:"",
+            template:""
         }
         for(var i=0; i<data.length; i++){
             switch (data[i].atomic){
@@ -58,6 +60,8 @@ function gateSet() {
                 case "component":
                     LIS.component+=data[i].htmlLi;
                     break;
+                case "template":
+                    LIS.template+=data[i].htmlLi;
                 default:
                     break;
             }

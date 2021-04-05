@@ -20,12 +20,12 @@ function __bannerSwiper(wrapperId,option) {
         slidesPerView: opt.slidesPerView,
         autoplay: opt.autoplay,
         pagination: {
-            el: '.swiper-pagination',
+            el: wrapperId+' .swiper-pagination',
             clickable: false,
         },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: wrapperId + ' .swiper-button-next',
+            prevEl: wrapperId + ' .swiper-button-prev',
         },
 
         on: {

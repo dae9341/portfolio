@@ -1,4 +1,4 @@
-.m-selectBox{width: 300px; +.m-selectBox{margin-top: 10px;}
+.m-selectBox{width: 100%; +.m-selectBox{margin-top: 10px;}
   &.-disabled .m-selectBox__button a{color: #b1b1b1;}
   &.-disabled .m-selectBox__button a:after{border-color:#b1b1b1;}
 }

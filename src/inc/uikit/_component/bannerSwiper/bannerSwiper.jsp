@@ -7,7 +7,32 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    /*
+    * id (필수값)
+    * */
     String id = request.getParameter("id");
+
+    /*
+     * isAutoplay 오토슬라이드 사용 여부
+     * true: 사용(디폴트)
+     * false: 미사용
+     * */
+    boolean isAutoplay = (request.getParameter("isAutoplay") == null ) ? true : Boolean.parseBoolean(request.getParameter("isAutoplay"));
+
+
+    /*
+     * isCounter 카운터 사용 여부
+     * true: 사용(디폴트)
+     * false: 미사용
+     * */
+    boolean isCounter = (request.getParameter("isCounter") == null ) ? true : Boolean.parseBoolean(request.getParameter("isCounter"));
+
+    /*
+     * 슬라이드 바 입력불가 사용 여부
+     * true: 사용
+     * false: 미사용(디폴트)
+     * */
+    boolean isBar = (request.getParameter("isBar") == null ) ? false : Boolean.parseBoolean(request.getParameter("isBar"));
 %>
 
 <div class="c-bannerSwiper" id="<%=id%>">
@@ -27,8 +52,10 @@
                 <div class="swiper-slide">Slide 8</div>
                 <div class="swiper-slide">Slide 9</div>
             </div>
+            <%if(!isBar){%>
             <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
+            <%}%>
 
             <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
@@ -36,15 +63,19 @@
 
         </div>
 
+        <%if(isCounter){%>
         <!--카운터-->
         <div class="c-bannerSwiper__counter">
         </div>
         <!--//카운터-->
+        <%}%>
 
+        <%if(isBar){%>
         <!--바 표시-->
         <div class="c-bannerSwiper__bar">
         </div>
         <!--//바 표시-->
+        <%}%>
     </div>
 </div>
 
@@ -52,9 +83,9 @@
     var <%=id%>;
     $(function () {
         <%=id%> = new kdh.component.bannerSwiper("#<%=id%>",{
-            autoplay:true,
-            counter:true,
-            bar:true
+            autoplay:<%=isAutoplay%>,
+            counter:<%=isCounter%>,
+            bar:<%=isBar%>
         });
     })
 </script>
