@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="t-headerAttachTab" id="">
+<div class="t-headerAttachTab" id="headerAttachTab">
     <div class="t-headerAttachTab__list">
         <ul>
             <li class="current">상품설명</li>
@@ -16,3 +16,11 @@
         </ul>
     </div>
 </div>
+<%--
+<script>
+    var headerAttachTab;
+    $(function (){
+        headerAttachTab = new kdh.template.headerAttachTab("#test")
+    });
+</script>
+--%>

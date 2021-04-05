@@ -53,7 +53,7 @@
 
 %>
 <span class="a-input <%=disabledClass%>" id="<%=id%>">
-    <input type="<%=type%>" class="a-input__area" placeholder="<%=placeholder%>" <%if(isDisabled){%>disabled="disabled" <%}%> >
+    <input type="<%=type%>" class="a-input__area" placeholder="<%=placeholder%>" <%if(isDisabled){%>disabled="disabled" <%}%> autocapitalize="off">
 
 
     <%if(!isDisabled && (isClearFunc || isPwToggleFunc)){%>
