@@ -8,7 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+    /*
+    * id  (필수값)
+    * */
     String id = request.getParameter("id");
+
+    /*
+     * isDisabled 입력불가 사용 여부
+     * true: 사용
+     * false: 미사용(디폴트)
+     * */
+    boolean isDisabled = (request.getParameter("isDisabled") == null ) ? false : Boolean.parseBoolean(request.getParameter("isDisabled"));
 %>
 
 <div class="m-selectBox" id="<%=id%>">
@@ -61,7 +71,7 @@
     var aaa;
     $(function () {
         aaa = new kdh.module.selectBox("#<%=id%>",{
-            isDisabled: false
+            isDisabled: <%=isDisabled%>
         });
     });
 

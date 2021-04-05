@@ -1,4 +1,6 @@
 [
-  {"atomic":"atom", "jsp":"__checkbox.jsp", "href": "/src/inc/uikit/_atom/form/__checkbox.jsp", "desc":"공통 > 폼 형식 > 체크박스"},
-  {"atomic":"atom", "jsp":"__input.jsp", "href": "/src/inc/uikit/_atom/form/__input.jsp", "desc":"공통 > 폼 형식 > 인풋"}
+  {"atomic":"atom", "jsp":"checkbox__.jsp", "href": "/src/inc/uikit/_atom/form/checkbox__.jsp", "desc":"공통 > 폼 형식 > 체크박스"},
+  {"atomic":"atom", "jsp":"input__.jsp", "href": "/src/inc/uikit/_atom/form/input__.jsp", "desc":"공통 > 폼 형식 > 인풋"},
+  {"atomic":"component", "jsp":"bannerSwiper__.jsp", "href": "/src/inc/uikit/_component/bannerSwiper/bannerSwiper__.jsp", "desc":"공통 > 배너 스와이퍼"},
+  {"atomic":"module", "jsp":"selectBox__.jsp", "href": "/src/inc/uikit/_module/selectBox/selectBox__.jsp", "desc":"공통 > 디자인 셀렉트"}
 ]

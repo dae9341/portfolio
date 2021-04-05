@@ -11,11 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/src/page/main/main.jsp">메인</a>
-<a href=""></a>
+<a style="display: block;" href="/src/page/main/main.jsp">메인</a>
+<a style="display: block;" href="/src/gate/gate.jsp">ATOMIC GATE</a>
 
-<div class="">
-    
-</div>
 </body>
 </html>

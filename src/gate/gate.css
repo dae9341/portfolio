@@ -1,0 +1,8 @@
+.gate{font-size:14px; padding: 20px;}
+.gate > div+div{margin-top: 20px;}
+.gate > div h1{background: skyblue; font-size:16px; padding: 4px;}
+.gate ul{border:1px solid #d1d1d1;}
+.gate ul li{display: flex;align-items: center; padding: 5px;}
+.gate ul li+li{ border-top:1px solid #d1d1d1;}
+.gate ul li .desc{}
+.gate ul li .url{text-decoration: underline; margin-left: 10px;}

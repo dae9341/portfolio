@@ -5,13 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="../../src/css/kdh_base.css">
+    <link rel="stylesheet" href="gate.css">
     <script type="text/javascript" src="../../src/js/kdh_vendor.js"></script>
     <script type="text/javascript" src="gate.js"></script>
     <title>KDH-GATE</title>
 </head>
 <body>
-<div class="gate">
-
+<div class="gate" id="gate">
 </div>
 <script>
     $(function () {
