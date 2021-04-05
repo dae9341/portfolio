@@ -8,7 +8,7 @@
 <!-- //UI header -->
 <div class="p-main">
     <!-- 탭리스트 -->
-    <div class="t-headerAttachTab" id="">
+    <div class="t-headerAttachTab" id="headerAttachTab">
         <div class="t-headerAttachTab__list">
             <ul>
                 <li class="current">상품설명</li>
@@ -30,6 +30,9 @@
     </div>
 
     <div>
+        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
+        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
+        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
         <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
     </div>
 

@@ -10,11 +10,11 @@ function __headerAttachTab(wrapperId){
     $(window).scroll(function () {
         var now = $(this).scrollTop();
 
-        if(kdh.base.scrollDirection=="down" && now >= attach_value){
+        if(kdh.scrollDirection=="down" && now >= attach_value){
             $header.append($appendItem);
             console.log("attach!")
-        }else if(kdh.base.scrollDirection=="up" && now < detach_value){
-            $(wrapperId).parent.append($appendItem);
+        }else if(kdh.scrollDirection=="up" && now < detach_value){
+            $(wrapperId).append($appendItem);
             console.log("detach!")
         }
     });
