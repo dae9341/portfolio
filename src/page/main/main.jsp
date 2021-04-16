@@ -7,6 +7,8 @@
 <jsp:include page="../../../src/inc/uikit/common/header/header.jsp"></jsp:include>
 <!-- //UI header -->
 <div class="p-main">
+
+
     <!-- 탭리스트 -->
     <div class="t-headerAttachTab" id="headerAttachTab">
         <div class="t-headerAttachTab__list">
@@ -29,18 +31,14 @@
         </div>
     </div>
 
-    <div>
-        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
-        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
-        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
-        <jsp:include page="../../../src/inc/uikit/_template/boxList/boxList.jsp"></jsp:include>
-    </div>
+    <product-basic></product-basic>
 
-    <a href="#" onclick="kdh.common.layer.open('#layerTest1'); return false;">레이어 테스트</a>
 
     <jsp:include page="../../../src/inc/uikit/common/layer/layer.jsp">
         <jsp:param name="id" value="layerTest1"></jsp:param>
     </jsp:include>
+
+
     <script>
         $(function (){
             kdh.template.headerAttachTab("#headerAttachTab")

@@ -62,7 +62,7 @@ gulp.task("js:atom",function () {
 
 /*js uikit module 컨캣*/
 gulp.task("js:module",function () {
-    return gulp.src([uikit+"_module/**/*.js",entry+"js/kdh_uikit_module.js"])
+    return gulp.src([uikit+"_module/**/*.js",uikit+"_module/**/*.jsx",entry+"js/kdh_uikit_module.js"])
         .pipe(concat("kdh_uikit_module.js"))
         .pipe(babel({
             presets:['@babel/env']
@@ -115,7 +115,7 @@ gulp.task("sass:watch",function () {
 
 /* js 와치 */
 gulp.task("js:watch", function () {
-    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:template","js:base","js:common"]));
+    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",uikit+"**/*.jsx", page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:template","js:base","js:common"]));
 });
 
 

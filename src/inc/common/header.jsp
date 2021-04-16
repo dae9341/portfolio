@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/../src/css/kdh_uikit_template.css">
     <link rel="stylesheet" href="/../src/css/kdh_page_main.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_vendor.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_base.js"></script>
     <script type="text/javascript" src="../../../src/js/kdh_uikit_common.js"></script>
