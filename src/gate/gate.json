@@ -3,6 +3,7 @@
   {"atomic":"atom", "jsp":"input__.jsp", "href": "/src/inc/uikit/_atom/form/input__.jsp", "desc":"공통 > 폼 형식 > 인풋"},
   {"atomic":"component", "jsp":"bannerSwiper__.jsp", "href": "/src/inc/uikit/_component/bannerSwiper/bannerSwiper__.jsp", "desc":"공통 > 배너 스와이퍼"},
   {"atomic":"module", "jsp":"selectBox__.jsp", "href": "/src/inc/uikit/_module/selectBox/selectBox__.jsp", "desc":"공통 > 디자인 셀렉트"},
+  {"atomic":"module", "jsp":"productBasic__.jsp", "href": "/src/inc/uikit/_module/product/productBasic__.jsp", "desc":"공통 > 상품모듈"},
   {"atomic":"template", "jsp":"boxList__.jsp", "href": "/src/inc/uikit/_template/boxList/boxList__.jsp", "desc":"공통 > 테이블형식 리스트 템플릿"}
 
 ]
