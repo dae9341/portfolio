@@ -1,0 +1,9 @@
+.a-priceBasic{
+  font-weight: bold;font-size:18px;
+  &.-sm{font-size:12px;}
+  &.-md{font-size:18px;}
+  &.-lg{font-size:24px;}
+  &.-xl{font-size:30px;}
+
+  &:after{content:"원"}
+}
