@@ -8,7 +8,8 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.1.0"
+    "gulp-sass": "^4.1.0",
+    "playwright": "^1.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",
