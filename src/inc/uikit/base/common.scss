@@ -3,6 +3,8 @@ a{text-decoration: none;}
 *{color:#333;}
 $BRAND_COLOR:#004444;
 $BRAND_SUB_COLOR: tan;
+$COLOR_DISABLED: #efefef;
+.-hidden, .-tts{position: absolute;clip: rect(0,0,0,0);margin: -1px;padding: 0;width: 1px;height: 1px;overflow: hidden;border: 0;}
 
 
 /*! 헤더,푸터 고정영역 */
@@ -12,3 +14,4 @@ body.-up .l-header.-sticky{top:0px;}
 body.-up .docBar.-fixed{bottom:0}
 body.-down .l-header.-sticky{top:-52px;}
 body.-down .docBar.-fixed{bottom:-60px;}
+

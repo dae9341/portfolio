@@ -38,7 +38,8 @@ table {
 
 input {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
   font-size: 14px;
@@ -49,6 +50,16 @@ a {
 
 * {
   color: #333; }
+
+.-hidden, .-tts {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0; }
 
 /*! 헤더,푸터 고정영역 */
 body {

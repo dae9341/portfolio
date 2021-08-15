@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Title</title>
+
+    <link rel="stylesheet" href="a-gnb.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <script src="a-gnb.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<body>
+
+<div class="a-gnb" id="a-gnb">
+    <div class="a-gnb__swiper">
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 1</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 2</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 3</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 4</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 5</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 6</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 7</span></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="categoryBtn"><span>카테고리 8</span></a>
+                </div>
+            </div>
+            <!-- If we need pagination -->
+<!--            <div class="swiper-pagination"></div>-->
+
+            <!-- If we need scrollbar -->
+            <!--<div class="swiper-scrollbar"></div>-->
+        </div>
+        <div class="a-gnb__swiper__btns">
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+    <script>
+        var gnbSwiper;
+        $(function () {
+            gnbSwiper = new gnbSwiper("#a-gnb .swiper-container",
+                {
+                    spaceBetween: 10
+                }
+            )
+        })
+    </script>
+
+</div>
+</body>
+</html>

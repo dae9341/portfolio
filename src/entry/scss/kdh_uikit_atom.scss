@@ -1,3 +1,7 @@
+@import "../../../src/inc/uikit/base/common";
+/*! 폼형식 */
 @import "../../../src/inc/uikit/_atom/form/input"; // 폼 형식 > 인풋
 @import "../../../src/inc/uikit/_atom/form/checkbox"; // 폼 형식 > 체크박스
+
+/*! 공통 */
 @import "../../../src/inc/uikit/_atom/common/priceBasic"; // 공통 > 금액표시

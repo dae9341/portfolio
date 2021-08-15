@@ -1,0 +1,28 @@
+.t-btn{
+  $width:60px;
+  $height: 30px;
+
+  width: $width; height: $height; font-size: 14px; box-sizing: border-box;
+  cursor:pointer; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 5px; background-color: $BRAND_COLOR;
+  &__text{color: inherit; font-size: inherit;}
+  &__icon{margin-left: 5px;}
+
+  /* 사이즈*/
+  &.-auto{width: auto; padding: 0 10px; display: inline-flex;}
+  &.-xs{width:30px; height: 15px; font-size: 10px;}
+  &.-sm{width:60px; height: 20px; font-size: 12px;}
+  &.-md{width:60px;height: 30px;font-size: 14px;} // 기본값
+  &.-lg{width:80px; height: 40px; font-size: 16px;}
+  &.-xl{width:120px; height: 40px; font-size: 16px;}
+  &.-xxl{width:150px; height: 50px; font-size: 18px;}
+
+  /* 컬러*/
+  &.-white{background-color: #fff; color: #333; }
+  &.-whiteBorder{background-color: #fff; color: #333; border:1px solid #333;}
+  &.-tanWhite{background-color: tan; color: #fff;}
+  &.-grayWhtie{background-color: #999; color: #fff;}
+  &.-darkGrayWhite{background-color: #333; color: #fff;}
+
+  /* 정사각형 모드*/
+  &.-square{$height:$width; width: $width; height: $height;}
+}
