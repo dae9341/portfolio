@@ -6,6 +6,7 @@
   {"atomic":"module", "jsp":"productBasic__.jsp", "href": "/src/inc/uikit/_module/product/productBasic__.jsp", "desc":"공통 > 상품모듈"},
   {"atomic":"template", "jsp":"boxList__.jsp", "href": "/src/inc/uikit/_template/boxList/boxList__.jsp", "desc":"공통 > 테이블형식 리스트 템플릿"},
   {"atomic":"module", "jsp":"formFileUpload__.jsp", "href": "/src/inc/uikit/_module/formFileUpload/formFileUpload__.jsp", "desc":"공통 > 파일업로드 커스텀"},
-  {"atomic":"template", "jsp":"btn__.jsp", "href": "/src/inc/uikit/_template/btn/btn__.jsp", "desc":"공통 > 버튼형식"}
+  {"atomic":"template", "jsp":"btn__.jsp", "href": "/src/inc/uikit/_template/btn/btn__.jsp", "desc":"공통 > 버튼형식"},
+  {"atomic":"template", "jsp":"grid__.jsp", "href": "/src/inc/uikit/_template/grid/grid__.jsp", "desc":"공통 > 그리드 UI형식"}
 
 ]
