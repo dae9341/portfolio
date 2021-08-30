@@ -36,7 +36,7 @@ function gateSet() {
 
         LINE.htmlLi+='<li>' +
                     '<span class="desc">'+data.desc+'</span>' +
-                    '<a class="url" href="'+data.href+'"><span>'+data.href+'</span></a>' +
+                    '<a class="url" target="_blank" href="'+data.href+'"><span>'+data.href+'</span></a>' +
                   '</li>'
         return LINE;
     }

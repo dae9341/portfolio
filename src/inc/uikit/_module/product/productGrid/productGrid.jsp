@@ -6,13 +6,13 @@
         <div class="m-productGrid__item__thumb">
             <img class="m-productGrid__item__thumb__image" alt="" src="">
             <div class="m-productGrid__item__thumb__labeImages">
-                <div class="a-labelImage">
+                <div class="a-imageLabel">
                     <img class="" src="" alt="">
                 </div>
-                <div class="a-labelImage">
+                <div class="a-imageLabel">
                     <img class="" src="" alt="">
                 </div>
-                <div class="a-labelImage">
+                <div class="a-imageLabel">
                     <img class="" src="" alt="">
                 </div>
             </div>
@@ -45,14 +45,14 @@
 
             <!--라벨-->
             <div class="m-productGrid__item__labelInfo">
-                <span class="a-label">무료배송</span>
-                <span class="a-label -special">특가</span>
+                <span class="a-textLabel">무료배송</span>
+                <span class="a-textLabel -special">특가</span>
             </div>
             <!--//라벨-->
 
             <!--즐겨찾기-->
             <div class="m-productGrid__item__bookmark">
-                <a href="#">북마크버튼임</a>
+                <a href="#" data-bookmark="false">북마크버튼임</a>
             </div>
             <!--//즐겨찾기-->
 

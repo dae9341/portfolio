@@ -5,3 +5,8 @@
 
 /*! 공통 */
 @import "../../../src/inc/uikit/_atom/common/priceBasic"; // 공통 > 금액표시
+
+/*! 상품 모듈 */
+@import "../../../src/inc/uikit/_atom/product/textLabel"; // 전시 > 상품모듈 > 라벨(텍스트)
+@import "../../../src/inc/uikit/_atom/product/imageLabel"; // 전시 > 상품모듈 > 라벨(이미지)
+@import "../../../src/inc/uikit/_atom/product/scrap"; // 전시 > 상품모듈 > 스크랩

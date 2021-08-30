@@ -1,0 +1,6 @@
+.a-scrap{display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; height: 20px;border-radius: 5px;background: #efefef;border:1px solid #d1d1d1;
+  &.-on{
+    color:#fff;
+    background: $BRAND_COLOR;
+  }
+}
