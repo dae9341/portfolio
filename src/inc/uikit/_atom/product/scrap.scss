@@ -4,3 +4,9 @@
     background: $BRAND_COLOR;
   }
 }
+
+.a-scrapComment{position: fixed; width: 400px; left:50%; bottom: 80px; margin-left: -200px; display: flex;align-items: center;flex-direction: column;justify-content: center;
+  &__content{width: 100%; background-color: #333333; height: 50px; display: flex; align-items: center; justify-content: center;margin-top: 10px;border-radius: 10px;
+    >span{color:#fff; font-size: 14px; font-weight: bold;}
+  }
+}
