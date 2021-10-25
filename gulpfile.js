@@ -7,7 +7,7 @@ var concat = require("gulp-concat"); // concat
 var babel = require('gulp-babel'); // babel
 
 
-var root = "../sample/"; // root
+var root = "../portfolio/"; // root
 var src = "src/";  // src
 var entry = root+src+"entry/"; // 엔트리 경로
 var vendor = entry+"vendor/" // 벤더 경로
