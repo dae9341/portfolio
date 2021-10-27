@@ -1,0 +1,10 @@
+.a-itemZzim{
+  &:hover{color:blue;}
+  &__btn{  /*background:url("//asda");*/
+    &:hover{color:red;}
+  }
+  &.-on{
+    .a-itemZzim__btn{color:red;}
+  }
+
+}

@@ -1,0 +1,10 @@
+.a-itemStat{ @include flexUI; align-items: center;
+  &__star{display: block; width: 14px; height: 14px;
+    svg{width: 100%;height: 100%; color:$BRAND_COLOR;
+      path{color:$BRAND_COLOR;}
+    }
+  }
+
+  &__score{color:$COLOR_DARKGRAY; font-weight: bold; font-size: 12px; margin-left: 2px;}
+  &__review{color:$COLOR_GRAY; font-weight: bold; font-size: 12px;margin-left: 6px;}
+}
