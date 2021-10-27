@@ -1,4 +1,6 @@
 @charset "UTF-8";
+/*! 변수 */
+/*! 모듈링 */
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -47,7 +49,8 @@ body {
   color: #333333; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 .-hidden, .-tts {
   position: absolute;
@@ -78,5 +81,3 @@ body.-down .l-header.-sticky {
 
 body.-down .docBar.-fixed {
   bottom: -60px; }
-
-/*! 모듈링 */

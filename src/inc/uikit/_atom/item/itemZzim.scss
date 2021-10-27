@@ -1,10 +1,10 @@
 .a-itemZzim{
   &:hover{color:blue;}
-  &__btn{  /*background:url("//asda");*/
+  &__btn{  background:url("/src/images/atomic/heart.png") 0 0 no-repeat; width: 20px; height: 20px; background-size:20px 20px; display: block;;
     &:hover{color:red;}
   }
   &.-on{
-    .a-itemZzim__btn{color:red;}
+    .a-itemZzim__btn{background:url("/src/images/atomic/heart_on.png") 0 0 no-repeat; background-size:20px 20px; }
   }
 
 }

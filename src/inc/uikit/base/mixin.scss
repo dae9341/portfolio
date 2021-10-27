@@ -1,0 +1,28 @@
+/*! 변수 */
+$BRAND_COLOR:#004444;
+$BRAND_SUB_COLOR: tan;
+$COLOR_DISABLED: #efefef;
+$COLOR_LIGHTRED: lightcoral;
+$COLOR_GRAY: #666;
+$COLOR_DARKGRAY: #333;
+
+/*! 모듈링 */
+@mixin dimmed{
+  background-color: rgba(0,0,0,0.6);
+  width: 100%; height: 100%;
+  position: absolute; top:0; left: 0;
+}
+
+@mixin flexUI{
+  display: flex;
+}
+@mixin flexUICenter{
+  @include flexUI();
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin price{
+  display: inline;
+  &:after{content:"원"}
+}
