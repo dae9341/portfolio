@@ -1,6 +1,6 @@
 var kdh={
-    html:$("html"),
-    body:$("body"),
+    html:"",
+    body:"",
     scrollDirection:"",
     base:{
         scrollDirection:__scrollDirection,
@@ -10,8 +10,10 @@ var kdh={
 
 /*로드시 실행*/
 window.onload=function (){
+    kdh.html = $("html");
+    kdh.body = $("body");
     kdh.html.addClass(kdh.value.browser+" "+kdh.value.os);
-    kdh.body.addClass("pageLoaded");
+    kdh.html.addClass("pageLoaded");
     kdh.base.scrollDirection();
 
 

@@ -1,10 +1,24 @@
 .a-itemZzim{
-  &:hover{color:blue;}
+
   &__btn{  background:url("/src/images/atomic/heart.png") 0 0 no-repeat; width: 20px; height: 20px; background-size:20px 20px; display: block;;
-    &:hover{color:red;}
+    &:hover{color:blue;}
   }
-  &.-on{
+  &.-on{ color:red;
     .a-itemZzim__btn{background:url("/src/images/atomic/heart_on.png") 0 0 no-repeat; background-size:20px 20px; }
   }
+}
+
+.a-itemZzimLayer{width: 200px; height: 200px; border-radius: 50%; background: #fff; border:1px solid $BRAND_SUB_COLOR; display: none;
+  position: fixed; top:50%; left: 50%; margin: -100px 0 0 -100px;
+  &__image{ @include flexUICenter(); width: 100%; height: 100%;
+    >span{font-size: 25px; font-weight: bold; color:$BRAND_COLOR;}
+  }
+
+  @keyframes opacity {
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 0; display: none;}
+  }
+
 
 }
