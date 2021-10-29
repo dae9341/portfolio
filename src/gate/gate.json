@@ -7,6 +7,7 @@
   {"atomic":"atom", "jsp":"itemZzim__.jsp", "href": "/src/inc/uikit/_atom/item/itemZzim__.jsp", "desc":"전시 > 상품모듈 > 찜하기"},
   {"atomic":"atom", "jsp":"itemName__.jsp", "href": "/src/inc/uikit/_atom/item/itemName__.jsp", "desc":"전시 > 상품모듈 > 상품명"},
   {"atomic":"atom", "jsp":"itemBenefit__.jsp", "href": "/src/inc/uikit/_atom/item/itemBenefit__.jsp", "desc":"전시 > 상품모듈 > 구매혜택"},
+  {"atomic":"component", "jsp":"itemBasicList__.jsp", "href": "/src/inc/uikit/_component/item/itemBasicList__.jsp", "desc":"전시 > 상품리스트"},
   {"atomic":"component", "jsp":"bannerSwiper__.jsp", "href": "/src/inc/uikit/_component/bannerSwiper/bannerSwiper__.jsp", "desc":"공통 > 배너 스와이퍼"},
   {"atomic":"module", "jsp":"selectBox__.jsp", "href": "/src/inc/uikit/_module/selectBox/selectBox__.jsp", "desc":"공통 > 디자인 셀렉트"},
   {"atomic":"module", "jsp":"itemBasic__.jsp", "href": "/src/inc/uikit/_module/item/itemBasic__.jsp", "desc":"공통 > 상품모듈"},

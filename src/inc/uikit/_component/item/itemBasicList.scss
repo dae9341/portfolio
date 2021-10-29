@@ -1,0 +1,5 @@
+.c-itemBasicList{
+  &.-row{display: flex;flex-wrap: wrap;box-sizing: border-box;
+    .m-itemBasic{margin-bottom: 20px;}
+  }
+}
