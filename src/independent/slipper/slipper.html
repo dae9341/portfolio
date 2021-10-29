@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi, viewport-fit=cover">
+    <title>Title</title>
+    <script src="../../entry/vendor/jQuery_3.5.1.js"></script>
+    <script src="slipper.js"></script>
+    <link rel="stylesheet" href="../../css/kdh_base.css">
+    <link rel="stylesheet" href="../css/include.css">
+</head>
+<style>.test{width: 500px; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 50px; }</style>
+
+<body>
+    <div class="slipper-container">
+        <div class="slipper-wrapper">
+            <div class="slipper-item">
+                <span class="test" style="background: yellowgreen">A</span>
+            </div>
+            <div class="slipper-item">
+                <span class="test" style="background: skyblue">B</span>
+            </div>
+            <div class="slipper-item">
+                <span class="test" style="background: indianred">C</span>
+            </div>
+            <div class="slipper-item">
+                <span class="test" style="background: tan">D</span>
+            </div>
+        </div>
+        <div class="slipper-btns">
+            <a href="#" id="slipper-btns-prev">prev</a>
+            <a href="#" id="slipper-btns-next">next</a>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    $(function () {
+        var start = new slipper(".slipper-container",{
+            test:""
+        });
+
+
+    });
+
+</script>
