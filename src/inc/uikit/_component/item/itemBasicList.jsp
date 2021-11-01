@@ -5,7 +5,7 @@
      * */
     String id = request.getParameter("id");
 %>
-
+<!--상품 리스트-->
 <div class="c-itemBasicList -row" id="<%=id%>">
 
     <%for(int i=0; i<13; i++){%>
@@ -14,3 +14,4 @@
     </div>
     <%}%>
 </div>
+<!--//상품 리스트-->

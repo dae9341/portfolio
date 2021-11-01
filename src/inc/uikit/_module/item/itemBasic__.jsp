@@ -9,7 +9,7 @@
             <jsp:param name="id" value="itemBasicWSG1"></jsp:param>
         </jsp:include>
         <jsp:include page="itemBasic.jsp">
-            <jsp:param name="id" value="itemBasicWSG1"></jsp:param>
+            <jsp:param name="id" value="itemBasicWSG2"></jsp:param>
         </jsp:include>
     </div>
 
