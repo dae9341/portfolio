@@ -6,12 +6,28 @@
     String id = request.getParameter("id");
 %>
 <!--상품 리스트-->
-<div class="c-itemBasicList -row" id="<%=id%>">
+<div class="c-itemBasicListWrap" id="<%=id%>">
 
-    <%for(int i=0; i<13; i++){%>
-    <div class="col-md-3 col-sm-4 col-xs-6">
-        <jsp:include page="../../_module/item/itemBasic.jsp"></jsp:include>
-    </div>
-    <%}%>
 </div>
+<script>
+    $(function () {
+        $.ajax({
+            type:"GET",
+            url:"../../../../../data.json",
+            success:function (data) {
+
+                var aa = kdh.convert.itemBasic(data);
+
+                ReactDOM.render(new ItemBasicList(aa).render(), document.getElementById("<%=id%>"));
+                kdh.atom.itemZzimInit();
+            },
+            error:function (err) {
+                console.log(err);
+            }
+
+        });
+
+
+    });
+</script>
 <!--//상품 리스트-->

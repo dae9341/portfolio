@@ -7,7 +7,6 @@ kdh.atom={
 
 $(function () {
     // kdh.atom.scrapInit();
-    kdh.atom.itemZzimInit();
     kdh.atom.itemZzimObj = new kdh.atom.itemZzim();
 
 })

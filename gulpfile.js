@@ -31,7 +31,7 @@ gulp.task("sass", function () {
 
 /* js_vendor 컨캣 */
 gulp.task("js:vendor",function () {
-    return gulp.src([vendor+"jQuery_3.5.1.js", vendor+"Swiper_6.4.10.js", vendor+"react.production.min.js", vendor+"react-dom.production.min.js"])
+    return gulp.src([vendor+"jQuery_3.5.1.js", vendor+"Swiper_6.4.10.js", vendor+"lodash_4.17.15.js" , vendor+"react.production.min.js", vendor+"react-dom.production.min.js"])
         .pipe(concat("kdh_vendor.js"))
         .pipe(gulp.dest(dist_js))
 });
@@ -74,7 +74,7 @@ gulp.task("js:module",function () {
 
 /*js uikit component 컨캣*/
 gulp.task("js:component",function () {
-    return gulp.src([uikit+"_component/**/*.js",entry+"js/kdh_uikit_component.js"])
+    return gulp.src([uikit+"_component/**/*.js",uikit+"_component/**/*.jsx",entry+"js/kdh_uikit_component.js"])
         .pipe(concat("kdh_uikit_component.js"))
         .pipe(babel({
             presets:['@babel/preset-env']

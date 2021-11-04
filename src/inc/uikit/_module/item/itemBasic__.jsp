@@ -12,8 +12,16 @@
             <jsp:param name="id" value="itemBasicWSG2"></jsp:param>
         </jsp:include>
     </div>
+    <script>
+        $(function () {
+            kdh.atom.itemZzimInit();
+        })
+    </script>
 
 </div>
 <!--코드 header-->
 <jsp:include page="../../../../../src/inc/common/footer.jsp"></jsp:include>
 <!--//코드 header-->
+
+
+<script id="tvLivePrdJsonData" type="text/html" ></script>

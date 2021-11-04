@@ -10,7 +10,7 @@
 </div>
 <script>
     $(function () {
-        ReactDOM.render(new ItemBasic().render(), document.getElementById("<%=id%>"))
+        ReactDOM.render(new ItemBasic().render(), document.getElementById("<%=id%>"));
     })
 </script>
 <!--//상품: 기본형 -->
