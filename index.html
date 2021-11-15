@@ -10,3 +10,18 @@
   <a style="display: block;" href="/src/gate/gate.jsp">ATOMIC GATE</a>
 </body>
 </html>
+<script>
+    function testPromise() {
+        return new Promise(function (resolve,reject) {
+            var abc= ["1","2","3","5"]
+
+            resolve();
+
+        })
+
+    }
+
+    testPromise().then(function (aa) {
+        console.log(aa);
+    })
+</script>

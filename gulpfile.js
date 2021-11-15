@@ -67,7 +67,7 @@ gulp.task("js:module",function () {
         .pipe(concat("kdh_uikit_module.js"))
         .pipe(babel({
             presets:['@babel/preset-env'],
-            plugins:['transform-react-jsx']
+            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
         }))
         .pipe(gulp.dest(dist_js))
 });
@@ -139,8 +139,9 @@ gulp.task("w" , gulp.series(["kdh"], gulp.parallel(["sass:watch","js:watch"])) )
 
 /* sass 컴파일 */
 gulp.task("sass:inde", function () {
-    return gulp.src(independent+"scss/*.scss")
+    return gulp.src(independent+"**/*.scss")
         .pipe(sass().on("error", sass.logError))
+        .pipe(concat("include.css"))
         .pipe(gulp.dest(independent_dist_css))
 });
 

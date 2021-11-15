@@ -1,7 +1,10 @@
 .slipper-container{
-  overflow: hidden; position: relative;
+  overflow: hidden; position: relative; width: 100%; height: 100%;
 }
 
 .slipper-wrapper{
-  position: relative; width:100%; height: 100%;
+  position: relative; width:100%; height: 100%; display: flex; align-items: center; justify-content: center;transition-duration: 0ms;transform: translate3d(0px, 0 ,0 );
+}
+
+.slipper-item{
 }
