@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="slipper-btns">
-            <a href="#" class="slipper-btns-prev">prev</a>
-            <a href="#" class="slipper-btns-next">next</a>
+            <a href="#" class="slipper-btns-prev" onclick="abcs.prev(); return false;">prev</a>
+            <a href="#" class="slipper-btns-next" onclick="abcs.next(); return false;">next</a>
         </div>
     </div>
 
@@ -38,6 +38,7 @@
     var abcs;
     $(function () {
         abcs = new slipper(".slipper-container",{
+            speed:300
         });
 
 

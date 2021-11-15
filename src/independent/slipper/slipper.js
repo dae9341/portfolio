@@ -1,7 +1,8 @@
 function slipper(wrapperId, option){
     var me = this;
     var opt = $.extend({
-        initIdx: 4
+        initIdx: 4,
+        speed:500,
 
     },option);
 
@@ -16,33 +17,45 @@ function slipper(wrapperId, option){
         },
         index: opt.initIdx,
         width:"",
-        pos:""
+        height:"",
+        pos:"",
+        speed:opt.speed
 
     }
 
 
     const init = function(){
 
-        var w = me.$slipper.items.width();
-        var all_w = w * me.$slipper.len;
-        var pos = (all_w - w ) /2;
-        me.index = (me.index <0 || me.index>= me.$slipper.len) ? 0:me.index; // 범위를 벗어날경우 0으로 세팅해준다.
-        pos = pos - (w* me.index);
+        return new Promise(function (resolve,reject) {
+
+            var w = me.$slipper.items.width();
+            var h = me.$slipper.items.height();
+            var all_w = w * me.$slipper.len;
+            var pos = (all_w - w ) /2;
+            me.index = (me.index <0 || me.index>= me.$slipper.len) ? 0:me.index; // 범위를 벗어날경우 0으로 세팅해준다.
+            pos = pos - (w* me.index);
 
 
-        me.$slipper.container.css({
-            width:w
+            me.$slipper.container.css({
+                width:w,
+                height:h
+            });
+
+            me.$slipper.wrapper.css({
+                transitionDuration: me.speed+"ms",
+                transform: "translate3d("+pos+"px, 0 ,0 )"
+            });
+
+
+
+            me.pos=pos;
+            me.width = w;
+            me.height = h;
+            me.allWidth = all_w;
+
+            resolve();
+
         });
-
-        me.$slipper.wrapper.css({
-            transitionDuration: "500ms",
-            transform: "translate3d("+pos+"px, 0 ,0 )"
-        });
-
-
-        me.pos=pos;
-        me.width = w;
-        me.allWidth = all_w;
     };
 
     me.move = function(idx){
@@ -57,12 +70,24 @@ function slipper(wrapperId, option){
     };
 
     me.next = function(){
-
-        me.move(me.index+1);
+        if(me.index < me.$slipper.len-1){
+            me.move(me.index+1);
+        }
+    };
+    me.prev=function(){
+        if(me.index>0){
+            me.move(me.index-1);
+        }
     };
 
 
-    init();
+    init().then(function () {
+        setTimeout(function(){
+            me.$slipper.container.css({
+                opacity:"1"
+            })
+        },me.speed+500)
+    });
 
 
     console.log(me);
