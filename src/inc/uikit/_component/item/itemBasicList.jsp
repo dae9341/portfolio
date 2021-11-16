@@ -9,6 +9,8 @@
 <div class="c-itemBasicListWrap" id="<%=id%>">
 
 </div>
+<%--<div className={`col-md-3 col-sm-4 col-xs-6`}> row형 --%>
+<%--<div className={`col-md-6 col-sm-6 col-xs-12`}> list형 --%>
 <script>
     $(function () {
         $.ajax({
@@ -16,9 +18,9 @@
             url:"../../../../../data.json",
             success:function (data) {
 
-                var aa = kdh.convert.itemBasic(data);
+                var convertDATA = kdh.convert.itemBasic(data);
 
-                ReactDOM.render(new ItemBasicList(aa).render(), document.getElementById("<%=id%>"));
+                ReactDOM.render(new ItemBasicList(convertDATA,"row").render(), document.getElementById("<%=id%>"));
                 kdh.atom.itemZzimInit();
             },
             error:function (err) {

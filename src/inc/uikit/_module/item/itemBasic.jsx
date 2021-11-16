@@ -2,8 +2,8 @@ class ItemBasic extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.props;
-        this.item = this.state.prop;
-        console.log(this.item);
+        this.item = this.state.itemData;
+        console.log(this.state)
     }
 
     zzimClick = (e)=>{
@@ -36,14 +36,21 @@ class ItemBasic extends React.Component{
         return priceDom;
     };
 
-    componentDidMount(){
-        console.log("componentDidMount");
-    }
+    mediaQueryClassSet = () =>{
+        var mediaClass= "";
+        switch (this.state.displayType) {
+            case "row": mediaClass = `col-md-3 col-sm-4 col-xs-6`; break;
+            case "list": mediaClass = `col-md-6 col-sm-6 col-xs-12`; break;
+            default: break;
+        }
+
+        return mediaClass;
+    };
 
     render(){
         return(
-            <div className={`col-md-3 col-sm-4 col-xs-6`}>
-                <div className={`m-itemBasic`}>
+            <div className={this.mediaQueryClassSet()}>
+                <div className={`m-itemBasic -${this.state.displayType}`}>
                     <a className={`m-itemBasic__link`}></a>
                     <div className={`m-itemBasic__image`}>
                         <div className={`a-itemImage`}>
@@ -69,8 +76,10 @@ class ItemBasic extends React.Component{
                         <div className={`a-itemBenefit`}>
                             {(this.item.dlvcdFreeYn == "Y") ? <div className={`a-itemBenefit__freeDeli`}>무료배송</div>: <div className={`a-itemBenefit__freeDeli`}>배송비 2,500원</div>}
 
-                            {(this.item.dcCardNm)}
-                            <div className={`a-itemBenefit__card`}>청구할인 최대 10%</div>
+
+                            <div className={`a-itemBenefit__card`}>
+                                <span>{(this.item.dcCardNm)} {(this.item.dcCardRt)}%</span>
+                            </div>
                         </div>
                     </div>
                 </div>

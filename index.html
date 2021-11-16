@@ -5,23 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-  <a style="display: block;" href="/src/page/main/main.jsp">메인</a>
-  <a style="display: block;" href="/src/page/display/itemList.jsp">상품리스트</a>
-  <a style="display: block;" href="/src/gate/gate.jsp">ATOMIC GATE</a>
+  <a style="display: block;" target="_blank" href="/src/page/main/main.jsp">메인</a>
+  <a style="display: block;" target="_blank" href="/src/page/display/itemList.jsp">상품리스트</a>
+  <a style="display: block;" target="_blank" href="/src/gate/gate.jsp">ATOMIC GATE</a>
+  <!--<a style="display: block;" target="_blank" href="/src/independent/slipper/slipper.html">slipper</a>-->
 </body>
 </html>
 <script>
     function testPromise() {
         return new Promise(function (resolve,reject) {
-            var abc= ["1","2","3","5"]
+            var abc= ["1","2","3","5"];
 
-            resolve();
+            resolve(abc);
 
         })
 
     }
 
     testPromise().then(function (aa) {
+        aa = aa.map( item =>{
+            return item*item;
+        });
         console.log(aa);
     })
+
+    console.log();
+
+
 </script>
