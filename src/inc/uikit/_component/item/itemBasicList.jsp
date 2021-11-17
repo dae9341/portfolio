@@ -19,8 +19,12 @@
             success:function (data) {
 
                 var convertDATA = kdh.convert.itemBasic(data);
+                convertDATA={
+                    itemData: convertDATA,
+                    displayType:"row"
+                };
 
-                ReactDOM.render(new ItemBasicList(convertDATA,"row").render(), document.getElementById("<%=id%>"));
+                ReactDOM.render(new ItemBasicList(convertDATA).render(), document.getElementById("<%=id%>"));
                 kdh.atom.itemZzimInit();
             },
             error:function (err) {

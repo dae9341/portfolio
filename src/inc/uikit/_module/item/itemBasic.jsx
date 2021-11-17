@@ -1,7 +1,9 @@
 class ItemBasic extends React.Component{
     constructor(props) {
         super(props);
-        this.state = this.props;
+        this.state = {
+            ...props
+        };
         this.item = this.state.itemData;
         console.log(this.state)
     }
@@ -47,11 +49,26 @@ class ItemBasic extends React.Component{
         return mediaClass;
     };
 
+
+    test =()=>{
+        this.setState(state=>{
+            var type=state.displayType;
+            switch (state.displayType) {
+                case "list": type="row"; break;
+                case "row": type="list"; break;
+                default: break;
+            }
+            return{
+                displayType:type
+            }
+        },()=>{console.log(this.state.displayType)})
+    };
+
     render(){
         return(
             <div className={this.mediaQueryClassSet()}>
                 <div className={`m-itemBasic -${this.state.displayType}`}>
-                    <a className={`m-itemBasic__link`}></a>
+                    <a href={`#`} className={`m-itemBasic__link`} onClick={this.test}></a>
                     <div className={`m-itemBasic__image`}>
                         <div className={`a-itemImage`}>
                             <img src={this.item.fileName} alt=""/>

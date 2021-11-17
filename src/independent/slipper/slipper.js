@@ -15,7 +15,7 @@ function slipper(wrapperId, option){
             prevBtn: $(wrapperId).find(".slipper-btns-prev"),
             len: $(wrapperId).find(".slipper-item").length,
         },
-        index: opt.initIdx,
+        index: opt.initIdx, 
         width:"",
         height:"",
         pos:"",
