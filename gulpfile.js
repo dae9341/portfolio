@@ -5,6 +5,7 @@ var sass = require("gulp-sass"); // sass 컴파일
 var concat = require("gulp-concat"); // concat
 // var rev = require("gulp-rev"); // rev (hash값으로 리비전번호를 부여)
 var babel = require('gulp-babel'); // babel
+var uncss = require('gulp-uncss');
 
 
 var root = "../portfolio/"; // root
@@ -151,3 +152,13 @@ gulp.task("w:inde", function () {
 
 
 
+gulp.task("uncss", function(){
+    return gulp.src([independent+'slipper/slipper.scss', independent+'selectBox/selectBox.scss'])
+        .pipe(uncss({
+            html:[independent+'slipper/teete.html'],
+            // ignore: ['.slipper-item.-cloneItem']
+            ignore:[/\b-cloneItem\b/]
+        }))
+        .pipe(concat('scssTest.scss'))
+        .pipe(gulp.dest(root+'test'));
+})

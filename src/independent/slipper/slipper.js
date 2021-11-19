@@ -117,16 +117,9 @@ function slipper(wrapperId, option){
 
     me.next = function(){
         me.move(me.index+1);
-        // if(me.index < me.$slipper.len-1){
-        //     me.move(me.index+1);
-        // }
     };
     me.prev = function(){
         me.move(me.index-1);
-        // if(me.index>0){
-        //     me.move(me.index-1);
-        // }
-
     };
 
 
