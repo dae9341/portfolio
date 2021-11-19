@@ -1,28 +1,28 @@
 function slipper(wrapperId, option){
     var me = this;
     var opt = $.extend({
-        initIdx: 4,
-        speed:500,
-        loop:true
+        initIdx: 1, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
+        speed:500, // 슬라이딩 속도 
+        loop:true // 무한루프 사용여부
 
     },option);
 
     me = {
         $slipper:{
-            container:$(wrapperId),
-            wrapper:$(wrapperId).find(".slipper-wrapper"),
-            items:$(wrapperId).find(".slipper-item"),
-            nextBtn: $(wrapperId).find(".slipper-btns-next"),
-            prevBtn: $(wrapperId).find(".slipper-btns-prev"),
-            len: $(wrapperId).find(".slipper-item").length,
+            container:$(wrapperId),  // 컨테이너 최상단 껍데기
+            wrapper:$(wrapperId).find(".slipper-wrapper"), // translate 움직이는 중간 껍데기
+            items:$(wrapperId).find(".slipper-item"), // 슬라이드 요소
+            nextBtn: $(wrapperId).find(".slipper-btns-next"), // 다음 버튼
+            prevBtn: $(wrapperId).find(".slipper-btns-prev"), // 이전 버튼
+            len: $(wrapperId).find(".slipper-item").length, // 슬라이드 갯수
         },
-        index: opt.initIdx, 
-        width:"",
-        height:"",
-        pos:"",
-        speed:opt.speed
+        index: opt.initIdx,  // 현재 인덱스
+        width:"", // width
+        height:"", // height
+        pos:"", // 현재 translateX 값
+        speed:opt.speed // 슬라이딩 속도
 
-    }
+    };
 
 
     const init = function(){
@@ -38,13 +38,15 @@ function slipper(wrapperId, option){
 
             var $firstItem = me.$slipper.items.eq(0);
             var $lastItem = me.$slipper.items.eq(me.$slipper.len-1);
-            var $cloneFirstItem = $firstItem.clone().addClass("-cloneItem");
-            var $cloneLastItem = $lastItem.clone().addClass("-cloneItem");
 
+            if(opt.loop){ //무한루프일때 clone 생성
+                var $cloneFirstItem = $firstItem.clone().addClass("-cloneItem");
+                var $cloneLastItem = $lastItem.clone().addClass("-cloneItem");
 
-            //clone item 세팅
-            $firstItem.before($cloneLastItem);
-            $lastItem.after($cloneFirstItem);
+                //clone item 세팅
+                $firstItem.before($cloneLastItem);
+                $lastItem.after($cloneFirstItem);
+            }
 
 
 
@@ -73,7 +75,6 @@ function slipper(wrapperId, option){
     me.move = function(idx){
 
         function move() {
-
             return new Promise(function (resolve,reject) {
                 me.pos = me.pos - (me.width * (idx-me.index));
 
@@ -86,13 +87,25 @@ function slipper(wrapperId, option){
             });
         }
 
+        if(!opt.loop){
+            if (idx < 0 || idx >= me.$slipper.len) {
+                console.log("무한루프 X");
+                console.log("맨처음 or 맨끝");
+            }else{
+                move().then(function () {
+                    me.index = idx;
+                    console.log(me);
+                });
+            }
+        }else {
             move().then(function () {
-                if(idx<0 || idx  >= me.$slipper.len) {
+                if (idx < 0 || idx >= me.$slipper.len) {
+                    console.log("무한루프 O");
                     console.log("맨처음 or 맨끝");
                     var gotoIdx;
                     if (idx < 0) {
                         gotoIdx = me.$slipper.len - 1;
-                    }else{
+                    } else {
                         gotoIdx = 0;
                     }
 
@@ -103,9 +116,9 @@ function slipper(wrapperId, option){
                             transform: "translate3d(" + me.pos + "px, 0 ,0 )"
                         });
                         me.index = gotoIdx;
-                    },300);
+                    }, 300);
                     console.log(me.index);
-                }else{
+                } else {
                     console.log("중간부");
                 }
 
@@ -113,13 +126,15 @@ function slipper(wrapperId, option){
                 me.index = idx;
                 console.log(me);
             });
+        }
     };
 
     me.next = function(){
         me.move(me.index+1);
+        // me.move(me.index+1);
     };
     me.prev = function(){
-        me.move(me.index-1);
+        me.move(me.index - 1);
     };
 
 
