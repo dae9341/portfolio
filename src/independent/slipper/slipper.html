@@ -31,6 +31,10 @@
             <a href="#" class="slipper-btns-prev" onclick="abcs.prev(); return false;">prev</a>
             <a href="#" class="slipper-btns-next" onclick="abcs.next(); return false;">next</a>
         </div>
+
+        <div class="slipper-pagination">
+
+        </div>
     </div>
 
 </body>
@@ -38,7 +42,7 @@
     var abcs;
     $(function () {
         abcs = new slipper(".slipper-container",{
-            speed:300
+            initIdx: 1
         });
 
 

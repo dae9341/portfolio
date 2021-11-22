@@ -15,3 +15,15 @@
 .slipper-item.-cloneItem{
   &:after{content:'clone'; position: absolute; top:0; left: 0;}
 }
+
+.slipper-pagination{
+  position: absolute; bottom:10px; left: 0; width: 100%;display: flex;align-items: center;justify-content: center;
+  &-dot{
+    width: 20px;height: 20px; border-radius: 50%; background: #eeeeee; display: flex;; align-items: center; justify-content: center;
+    margin-left: 5px; &:first-child{margin-left: 0;}
+    &.-on{
+      background-color: darkolivegreen; color:#fff;
+    }
+
+  }
+}
