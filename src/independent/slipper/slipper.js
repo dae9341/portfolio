@@ -3,11 +3,14 @@ function slipper(wrapperId, option){
     var opt = $.extend({
         initIdx: 0, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
         speed:500, // 슬라이딩 속도
-        loop:true, // 무한루프 사용여부
+        loop:false, // 무한루프 사용여부
         autoPlay:false, // 자동모드
         pagination:"dot", // dot, number, progressbar
         initSlipper:function () { // 슬라이더 시작 콜백
             console.log("init");
+        },
+        transitionEnd:function () { // 슬라이드 transition 종료시 콜백
+            console.log("transitionEnd");
         }
 
     },option);
@@ -93,30 +96,73 @@ function slipper(wrapperId, option){
 
     me.move = function(idx){
         console.log("!!!!!!!! move::::::::",me.$slipper.state);
-        if(me.$slipper.state === "moveStart") return false;
-
+        if(me.$slipper.state === "moveStart") {
+            console.log("test0")
+            return false;
+        }
         moveInit();
 
-        function move() {
-            me.$slipper.state = "moveStart";
+        function moveInit() {
             return new Promise(function (resolve,reject) {
-                console.log(me.$slipper.state)
-                me.pos = me.pos - (me.width * (idx-me.index));
 
-                me.$slipper.wrapper.css({
-                    transition: me.speed+"ms",
-                    transform: "translate3d("+me.pos+"px, 0 ,0 )"
-                });
+                function moveBasic(gotoIndex){
+                    me.$slipper.state = "moveStart";
+                    console.log(me.$slipper.state)
+                    me.pos = me.pos - (me.width * (idx-me.index));
 
-                setTimeout(function () {
-                    me.index = idx;
-                    me.$slipper.state = "moveEnd";
+                    me.$slipper.wrapper.css({
+                        transition: me.speed+"ms",
+                        transform: "translate3d("+me.pos+"px, 0 ,0 )"
+                    });
 
-                },me.speed);
+                    setTimeout(function () {
+                        me.index = idx;
+                        me.$slipper.state = "moveEnd";
+                        opt.transitionEnd(); // 슬라이더 transitionEnd 콜백
 
+                    },me.speed);
+
+                }
+
+                // page dot 온
+                function pageDotCheck (gotoIndex){
+                    me.$slipper.pagination.find(".slipper-pagination-dot").removeClass("-on");
+                    me.$slipper.pagination.find(".slipper-pagination-dot").eq(gotoIndex).addClass("-on");
+                }
+
+
+                if (idx < 0 || idx >= me.$slipper.len) { // 맨처음, 끝 체크
+                    if(opt.loop){ // 무한루프일 경우
+                        moveBasic();
+                        var gotoIdx;
+                        if (idx < 0) {
+                            gotoIdx = me.$slipper.len - 1;
+                        } else {
+                            gotoIdx = 0;
+                        }
+                        pageDotCheck(gotoIdx);
+
+
+                        setTimeout(function () {
+                            me.pos = me.pos - (me.width * (gotoIdx - me.index));
+                            me.$slipper.wrapper.css({
+                                transition: "none",
+                                transform: "translate3d(" + me.pos + "px, 0 ,0 )"
+                            });
+                            me.index = gotoIdx;
+                        }, me.speed);
+                        console.log(me.index);
+                    }else{
+                        return false;
+                    }
+                }else{ // 중간부
+                    moveBasic();
+                    pageDotCheck(idx);
+                }
                 resolve();
             })
         }
+/*
 
         function moveInit() {
             if(!opt.loop){
@@ -160,6 +206,7 @@ function slipper(wrapperId, option){
                 });
             }
         }
+*/
 
     };
 

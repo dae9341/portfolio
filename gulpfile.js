@@ -57,7 +57,8 @@ gulp.task("js:atom",function () {
     return gulp.src([uikit+"_atom/**/*.js",entry+"js/kdh_uikit_atom.js"])
         .pipe(concat("kdh_uikit_atom.js"))
         .pipe(babel({
-            presets:['@babel/preset-env']
+            presets:['@babel/preset-env'],
+            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
         }))
         .pipe(gulp.dest(dist_js))
 });
@@ -78,7 +79,8 @@ gulp.task("js:component",function () {
     return gulp.src([uikit+"_component/**/*.js",uikit+"_component/**/*.jsx",entry+"js/kdh_uikit_component.js"])
         .pipe(concat("kdh_uikit_component.js"))
         .pipe(babel({
-            presets:['@babel/preset-env']
+            presets:['@babel/preset-env'],
+            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
         }))
         .pipe(gulp.dest(dist_js))
 });
@@ -88,7 +90,8 @@ gulp.task("js:template",function () {
     return gulp.src([uikit+"_template/**/*.js",entry+"js/kdh_uikit_template.js"])
         .pipe(concat("kdh_uikit_template.js"))
         .pipe(babel({
-            presets:['@babel/preset-env']
+            presets:['@babel/preset-env'],
+            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
         }))
         .pipe(gulp.dest(dist_js))
 });
