@@ -2,9 +2,10 @@ function slipper(wrapperId, option){
     var me = this;
     var opt = $.extend({
         initIdx: 0, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
-        speed:500, // 슬라이딩 속도
-        loop:false, // 무한루프 사용여부
-        autoPlay:false, // 자동모드
+        speed:1000, // 슬라이딩 속도
+        delay:4000, // 무한루프시 다음페이지로 대기시간
+        loop:true, // 무한루프 사용여부
+        autoPlay:true, // 자동모드
         pagination:"dot", // dot, number, progressbar
         initSlipper:function () { // 슬라이더 시작 콜백
             console.log("init");
@@ -32,7 +33,8 @@ function slipper(wrapperId, option){
         width:"", // width
         height:"", // height
         pos:"", // 현재 translateX 값
-        speed:opt.speed // 슬라이딩 속도
+        speed:opt.speed, // 슬라이딩 속도
+        delay:opt.delay, // 무한루프시 다음페이지로 대기시간
 
     };
 
@@ -60,6 +62,7 @@ function slipper(wrapperId, option){
                 aaa+="<div class='slipper-pagination-dot "+on+ "'  >"+(i+1)+"</div>"
             };
 
+            me.$slipper.pagination.addClass("-"+opt.pagination);
             me.$slipper.pagination.append(aaa);
 
             if(opt.loop){ //무한루프일때 clone 생성
@@ -250,7 +253,7 @@ function slipper(wrapperId, option){
         start: function() {
             me.$slipper.interval = setInterval(function () {
                 me.move(me.index + 1);
-            }, me.speed + 1000)
+            }, me.speed)
         },
         stop:function () {
             clearInterval(me.$slipper.interval);
@@ -258,9 +261,9 @@ function slipper(wrapperId, option){
 
         restart:function () {
             interval.stop();
-            setTimeout(function () {
-                interval.start();
-            },me.speed);
+            interval.start();
+            // setTimeout(function () {
+            // },me.speed);
         }
 
     };
