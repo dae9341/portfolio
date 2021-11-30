@@ -10,8 +10,15 @@
   position:relative;
 }
 
-.slipper-btns-prev{position: absolute; top:50%; left: 0;}
-.slipper-btns-next{position: absolute; top:50%; right: 0;}
+.slipper-btns{
+  >a{position: absolute; top:50%;
+    &.slipper-btns-prev{left: 0;}
+    &.slipper-btns-next{right: 0;}
+    &.-disabled{opacity: 0.5;}
+
+  }
+}
+
 .slipper-item.-cloneItem{
   &:after{content:'clone'; position: absolute; top:0; left: 0;}
 }

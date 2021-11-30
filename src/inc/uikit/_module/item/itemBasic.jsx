@@ -5,7 +5,6 @@ class ItemBasic extends React.Component{
             ...props
         };
         this.item = this.state.itemData;
-        console.log(this.state)
     }
 
     zzimClick = (e)=>{
@@ -40,7 +39,7 @@ class ItemBasic extends React.Component{
 
     mediaQueryClassSet = () =>{
         var mediaClass= "";
-        switch (this.state.displayType) {
+        switch (this.props.displayType) {
             case "row": mediaClass = `col-md-3 col-sm-4 col-xs-6`; break;
             case "list": mediaClass = `col-md-6 col-sm-6 col-xs-12`; break;
             default: break;
@@ -49,26 +48,11 @@ class ItemBasic extends React.Component{
         return mediaClass;
     };
 
-
-    test =()=>{
-        this.setState(state=>{
-            var type=state.displayType;
-            switch (state.displayType) {
-                case "list": type="row"; break;
-                case "row": type="list"; break;
-                default: break;
-            }
-            return{
-                displayType:type
-            }
-        },()=>{console.log(this.state.displayType)})
-    };
-
     render(){
         return(
             <div className={this.mediaQueryClassSet()}>
-                <div className={`m-itemBasic -${this.state.displayType}`}>
-                    <a href={`#`} className={`m-itemBasic__link`} onClick={this.test}></a>
+                <div className={`m-itemBasic -${this.props.displayType}`}>
+                    <a href={`#`} className={`m-itemBasic__link`}></a>
                     <div className={`m-itemBasic__image`}>
                         <div className={`a-itemImage`}>
                             <img src={this.item.fileName} alt=""/>

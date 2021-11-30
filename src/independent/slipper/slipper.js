@@ -2,10 +2,10 @@ function slipper(wrapperId, option){
     var me = this;
     var opt = $.extend({
         initIdx: 0, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
-        speed:1000, // 슬라이딩 속도
-        delay:4000, // 무한루프시 다음페이지로 대기시간
+        speed:300, // 슬라이딩 속도
         loop:true, // 무한루프 사용여부
-        autoPlay:true, // 자동모드
+        autoPlay:false, // 자동모드
+        delay:3000, // 자동모드시 다음페이지로 대기시간
         pagination:"dot", // dot, number, progressbar
         initSlipper:function () { // 슬라이더 시작 콜백
             console.log("init");
@@ -13,7 +13,6 @@ function slipper(wrapperId, option){
         transitionEnd:function () { // 슬라이드 transition 종료시 콜백
             console.log("transitionEnd");
         }
-
     },option);
 
     me = {
@@ -35,7 +34,6 @@ function slipper(wrapperId, option){
         pos:"", // 현재 translateX 값
         speed:opt.speed, // 슬라이딩 속도
         delay:opt.delay, // 무한루프시 다음페이지로 대기시간
-
     };
 
 
@@ -72,9 +70,9 @@ function slipper(wrapperId, option){
                 //clone item 세팅
                 $firstItem.before($cloneLastItem);
                 $lastItem.after($cloneFirstItem);
+            }else{ //무한루프아닐때 버튼 활성화체크
+                btnCheck(me.index);
             }
-
-
 
             me.$slipper.container.css({
                 width:w,
@@ -84,7 +82,6 @@ function slipper(wrapperId, option){
             me.$slipper.wrapper.css({
                 transform: "translate3d("+pos+"px, 0 ,0 )"
             });
-
 
 
             me.pos=pos;
@@ -97,10 +94,20 @@ function slipper(wrapperId, option){
         });
     };
 
+    // 이전/다음 버튼 활성화/비활성화
+    function btnCheck(idx){
+        if(idx<=0){
+            me.$slipper.prevBtn.addClass("-disabled");
+        }else if(idx>=me.$slipper.len-1){
+            me.$slipper.nextBtn.addClass("-disabled");
+        }else{
+            me.$slipper.prevBtn.removeClass("-disabled");
+            me.$slipper.nextBtn.removeClass("-disabled");
+        }
+    }
+
     me.move = function(idx){
-        console.log("!!!!!!!! move::::::::",me.$slipper.state);
         if(me.$slipper.state === "moveStart") {
-            console.log("test0")
             return false;
         }
         moveInit();
@@ -109,9 +116,8 @@ function slipper(wrapperId, option){
             return new Promise(function (resolve,reject) {
 
                 function moveBasic(gotoIndex){
-                    me.$slipper.state = "moveStart";
-                    console.log(me.$slipper.state)
-                    me.pos = me.pos - (me.width * (idx-me.index));
+                    me.$slipper.state = "moveStart"; // 상태값 변경 moveStart
+                    me.pos = me.pos - (me.width * (idx-me.index)); // transition 범위 계산
 
                     me.$slipper.wrapper.css({
                         transition: me.speed+"ms",
@@ -120,7 +126,7 @@ function slipper(wrapperId, option){
 
                     setTimeout(function () {
                         me.index = idx;
-                        me.$slipper.state = "moveEnd";
+                        me.$slipper.state = "moveEnd"; // 상태값 변경 moveEnd
                         opt.transitionEnd(); // 슬라이더 transitionEnd 콜백
 
                     },me.speed);
@@ -154,63 +160,20 @@ function slipper(wrapperId, option){
                             });
                             me.index = gotoIdx;
                         }, me.speed);
-                        console.log(me.index);
+
                     }else{
                         return false;
                     }
                 }else{ // 중간부
                     moveBasic();
                     pageDotCheck(idx);
+                    if(!opt.loop){
+                        btnCheck(idx);
+                    }
                 }
                 resolve();
             })
         }
-/*
-
-        function moveInit() {
-            if(!opt.loop){
-                if (idx < 0 || idx >= me.$slipper.len) {
-                    console.log("무한루프 X");
-                    console.log("맨처음 or 맨끝");
-                }else{
-                    move();
-                    me.$slipper.pagination.find(".slipper-pagination-dot").removeClass("-on");
-                    me.$slipper.pagination.find(".slipper-pagination-dot").eq(idx).addClass("-on");
-                }
-            }else {
-                move().then(function () {
-                    if (idx < 0 || idx >= me.$slipper.len) {
-                        console.log("무한루프 O");
-                        console.log("맨처음 or 맨끝");
-                        var gotoIdx;
-                        if (idx < 0) {
-                            gotoIdx = me.$slipper.len - 1;
-                        } else {
-                            gotoIdx = 0;
-                        }
-
-                        me.$slipper.pagination.find(".slipper-pagination-dot").removeClass("-on");
-                        me.$slipper.pagination.find(".slipper-pagination-dot").eq(gotoIdx).addClass("-on");
-
-                        setTimeout(function () {
-                            me.pos = me.pos - (me.width * (gotoIdx - me.index));
-                            me.$slipper.wrapper.css({
-                                transition: "none",
-                                transform: "translate3d(" + me.pos + "px, 0 ,0 )"
-                            });
-                            me.index = gotoIdx;
-                        }, me.speed);
-                        console.log(me.index);
-                    } else {
-                        console.log("중간부");
-                        me.$slipper.pagination.find(".slipper-pagination-dot").removeClass("-on");
-                        me.$slipper.pagination.find(".slipper-pagination-dot").eq(idx).addClass("-on");
-                    }
-                });
-            }
-        }
-*/
-
     };
 
     me.next = function(){
@@ -232,8 +195,6 @@ function slipper(wrapperId, option){
     init().then(async function () {
         await opt.initSlipper(); // 슬라이더 시작 콜백
         me.$slipper.state = "ready"; // 슬라이더 준비상태
-        console.log(me.$slipper.state);
-
 
         await setTimeout(function(){
             me.$slipper.container.css({
@@ -253,7 +214,7 @@ function slipper(wrapperId, option){
         start: function() {
             me.$slipper.interval = setInterval(function () {
                 me.move(me.index + 1);
-            }, me.speed)
+            }, me.delay)
         },
         stop:function () {
             clearInterval(me.$slipper.interval);
@@ -267,9 +228,6 @@ function slipper(wrapperId, option){
         }
 
     };
-
-
-    console.log(me);
 
     return me;
 }
