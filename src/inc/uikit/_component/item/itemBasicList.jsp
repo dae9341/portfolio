@@ -6,7 +6,7 @@
     String id = request.getParameter("id");
 %>
 <!--상품 리스트-->
-<div class="c-itemBasicListWrap" id="<%=id%>">
+<div id="<%=id%>">
 
 </div>
 <%--<div className={`col-md-3 col-sm-4 col-xs-6`}> row형 --%>
@@ -19,12 +19,13 @@
             success:function (data) {
 
                 var convertDATA = kdh.convert.itemBasic(data);
-                convertDATA={
+                var param={
                     itemData: convertDATA,
-                    displayType:"row"
+                    displayType:"row",
+                    isSwitchBtn:true
                 };
 
-                ReactDOM.render(new ItemBasicList(convertDATA).render(), document.getElementById("<%=id%>"));
+                ReactDOM.render(new ItemBasicListWrap(param).render(), document.getElementById("<%=id%>"));
                 kdh.atom.itemZzimInit();
             },
             error:function (err) {

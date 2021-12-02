@@ -2,9 +2,8 @@ class ItemBasicList extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            ...props
+            ...props.props
         };
-        console.log(props);;
         this.setDisplayType = this.setDisplayType.bind(this);
         // console.log("this state::::",this.state);
     }
@@ -14,11 +13,10 @@ class ItemBasicList extends React.Component{
         this.setState(state=>{
             var type="";
             switch (state.displayType) {
-                case "list": type="row"; console.log(type); break;
-                case "row": type="list"; console.log(type); break;
+                case "list": type="row"; break;
+                case "row": type="list"; break;
                 default: type="row"; break;
             }
-            console.log(type);
             return{
                 ...state,
                 displayType:type
@@ -28,10 +26,9 @@ class ItemBasicList extends React.Component{
 
 
     render(){
-        console.log(this.state.displayType);
         return(
             <div>
-                <button className={`switch -${this.state.displayType}`} type={`button`} onClick={this.setDisplayType}>switch</button>
+                {this.state.isSwitchBtn ? <button className={`switch -${this.state.displayType}`} type={`button`} onClick={this.setDisplayType}>switch</button>:''}
                 <div className={`c-itemBasicList -${this.state.displayType}`}>
                     {this.state.itemData.map( item =>{
                         return <ItemBasic itemData={item} displayType={this.state.displayType}/>;
