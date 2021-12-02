@@ -1,0 +1,8 @@
+.c-promSlider{ width: 100%;
+  &__container{
+
+    &__item{display: flex; align-items: center; justify-content: space-between;}
+  }
+
+  &__paging{margin-top: 10px;}
+}

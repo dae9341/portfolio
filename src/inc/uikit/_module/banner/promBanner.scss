@@ -1,0 +1,18 @@
+.m-promBanner{ width: 180px; height: auto; position: relative;
+  &__link{width: 180px; height: 180px;display: block;border:1px solid #efefef;}
+  &__image{
+    .a-bannerImage{width: 100%; height: auto;}
+  }
+
+  &__content{
+    padding: 10px 10px 0; font-size: 12px;
+    &__title{}
+    &__detail{margin-top: 5px;}
+  }
+
+  &__category{
+    position: absolute;top: 80px;right: 20px;width: 50px;height: 50px; display: block; z-index: 2;
+    >img{display: block; width: 100%; height: 100%; }
+  }
+  &__directLink{display: block; margin:10px 10px 0; font-weight: bold; font-size: 12px; color: $COLOR_GRAY}
+}

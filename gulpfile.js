@@ -11,7 +11,7 @@ var uncss = require('gulp-uncss');
 var root = "../portfolio/"; // root
 var src = "src/";  // src
 var entry = root+src+"entry/"; // 엔트리 경로
-var vendor = entry+"vendor/" // 벤더 경로
+var vendor = entry+"vendor/"; // 벤더 경로
 var uikit = root+src+"inc/uikit/"; // uikit 경로
 var page = root+src+"page/"; // page 경로
 var dist_css = root+src+"css/"; //디스트CSS 경로
@@ -32,7 +32,7 @@ gulp.task("sass", function () {
 
 /* js_vendor 컨캣 */
 gulp.task("js:vendor",function () {
-    return gulp.src([vendor+"jQuery_3.5.1.js", vendor+"Swiper_6.4.10.js", vendor+"lodash_4.17.15.js" , vendor+"react.production.min.js", vendor+"react-dom.production.min.js"])
+    return gulp.src([vendor+"jQuery_3.5.1.js", vendor+"Swiper_6.4.10.js", vendor+"slipper.js" , vendor+"lodash_4.17.15.js" , vendor+"react.production.min.js", vendor+"react-dom.production.min.js"])
         .pipe(concat("kdh_vendor.js"))
         .pipe(gulp.dest(dist_js))
 });
@@ -136,8 +136,25 @@ gulp.task("kdh", gulp.series(["vendor","sass","js:base","js:common","js:atom","j
 /* 와치 통합 */
 gulp.task("w" , gulp.series(["kdh"], gulp.parallel(["sass:watch","js:watch"])) );
 
+function slipperSCSSDist (){
+    return new Promise(function (res) {
+        gulp.src(independent+"slipper/*.scss")
+            .pipe(sass().on("error", sass.logError))
+            .pipe(concat("slipper.css"))
+            .pipe(gulp.dest(vendor+"css/"))
+        res();
+    });
+}
+function slipperJSDist (){
+    return new Promise(function (res) {
+        gulp.src(independent+"slipper/*.js")
+            .pipe(concat("slipper.js"))
+            .pipe(gulp.dest(vendor));
+        res();
+    });
+}
 
-
+exports.slipperDist = gulp.series(slipperSCSSDist,slipperJSDist);
 
 /*임시*/
 

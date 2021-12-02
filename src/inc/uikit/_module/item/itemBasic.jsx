@@ -41,7 +41,7 @@ class ItemBasic extends React.Component{
         var mediaClass= "";
         switch (this.props.displayType) {
             case "row": mediaClass = `col-md-3 col-sm-4 col-xs-6`; break;
-            case "list": mediaClass = `col-md-6 col-sm-6 col-xs-12`; break;
+            case "list": mediaClass = `col-md-4 col-sm-6 col-xs-12`; break;
             default: break;
         }
 
