@@ -16,7 +16,7 @@
 <div class="c-promSlider" id="<%=id%>">
     <div class="slipper-container c-promSlider__container">
         <div class="slipper-wrapper">
-            <div class="slipper-item c-promSlider__container__item">
+            <div class="slipper-item c-promSlider__container__item" style="background: #007aff">
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
@@ -24,7 +24,7 @@
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
             </div>
-            <div class="slipper-item c-promSlider__container__item">
+            <div class="slipper-item c-promSlider__container__item" style="background: yellowgreen">
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
                 <jsp:include page="../../../uikit/_module/banner/promBanner.jsp"></jsp:include>
@@ -52,8 +52,12 @@
 <script>
     var test;
     $(function () {
-        test=new kdh.component.promSlider("#<%=id%>");
-
-        console.log(test);
+        test=new kdh.component.promSlider("#<%=id%>",{
+            initIdx: 0,
+            speed:500,
+            autoPlay:false,
+            transition:"slide",
+            delay:2000,
+        });
     })
 </script>

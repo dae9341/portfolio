@@ -4,14 +4,20 @@ function slipper(wrapperId, option){
         initIdx: 0, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
         speed:300, // 슬라이딩 속도
         loop:true, // 무한루프 사용여부
-        autoPlay:false, // 자동모드
+        autoPlay:true, // 자동모드
+        transition:"slide", // "slide": 슬라이드효과 , "none" : none/block 효과,    //미개발 "fade" : fadein/fadeout 효과
         delay:3000, // 자동모드시 다음페이지로 대기시간
         pagination:"dot", // dot, number, progressbar
         initSlipper:function () { // 슬라이더 시작 콜백
             console.log("init");
         },
+        transitionStart:function(){ // 슬라이드 transition 종료시 콜백
+            console.log("transitionStart");
+            // console.log(me.page)
+        },
         transitionEnd:function () { // 슬라이드 transition 종료시 콜백
             console.log("transitionEnd");
+            // console.log(me.page)
         }
     },option);
 
@@ -34,6 +40,7 @@ function slipper(wrapperId, option){
         pos:"", // 현재 translateX 값
         speed:opt.speed, // 슬라이딩 속도
         delay:opt.delay, // 무한루프시 다음페이지로 대기시간
+        autoPlay:opt.autoPlay // 자동모드
     };
 
 
@@ -88,6 +95,7 @@ function slipper(wrapperId, option){
             me.width = w;
             me.height = h;
             me.allWidth = all_w;
+            me.page=me.index+1;
 
             resolve();
 
@@ -110,26 +118,45 @@ function slipper(wrapperId, option){
         if(me.$slipper.state === "moveStart") {
             return false;
         }
+
+        var isCliff = idx < 0 || idx >= me.$slipper.len; // 맨 처음과 맨끝
+
         moveInit();
 
         function moveInit() {
             return new Promise(function (resolve,reject) {
 
-                function moveBasic(gotoIndex){
-                    me.$slipper.state = "moveStart"; // 상태값 변경 moveStart
+                function moveBasic(){
                     me.pos = me.pos - (me.width * (idx-me.index)); // transition 범위 계산
 
+                    me.index = idx;
+                    me.page = me.index + 1;
+                    if(!isCliff) { // 맨처음 or 맨끝 아닐경우
+                        me.$slipper.state = "moveStart"; // 상태값 변경 moveStart
+                        opt.transitionStart(); // 슬라이더 transitionStart 콜백
+                    }
+
+                    var transition;
+
+                    switch (opt.transition) {
+                        case "slide": transition=me.speed+"ms"; break;
+                        case "none": transition="none"; break;
+                        default: transition=me.speed+"ms"; break;
+                    }
+
+
                     me.$slipper.wrapper.css({
-                        transition: me.speed+"ms",
+                        transition: transition,
                         transform: "translate3d("+me.pos+"px, 0 ,0 )"
                     });
 
                     setTimeout(function () {
-                        me.index = idx;
-                        me.$slipper.state = "moveEnd"; // 상태값 변경 moveEnd
-                        opt.transitionEnd(); // 슬라이더 transitionEnd 콜백
+                        if(!isCliff) { // 맨처음 or 맨끝 아닐경우
+                            me.$slipper.state = "moveEnd"; // 상태값 변경 moveEnd
+                            opt.transitionEnd(); // 슬라이더 transitionEnd 콜백
+                        }
 
-                    },me.speed);
+                    }, me.speed);
 
                 }
 
@@ -140,7 +167,7 @@ function slipper(wrapperId, option){
                 }
 
 
-                if (idx < 0 || idx >= me.$slipper.len) { // 맨처음, 끝 체크
+                if (isCliff) { // 맨처음 or 맨끝
                     if(opt.loop){ // 무한루프일 경우
                         moveBasic();
                         var gotoIdx;
@@ -152,13 +179,20 @@ function slipper(wrapperId, option){
                         pageDotCheck(gotoIdx);
 
 
+                        me.pos = me.pos - (me.width * (gotoIdx - me.index));
+                        me.index = gotoIdx;
+                        me.page = me.index+1;
+                        me.$slipper.state = "moveStart"; // 상태값 변경 moveStart
+                        opt.transitionStart(); // 슬라이더 transitionStart 콜백
+
                         setTimeout(function () {
-                            me.pos = me.pos - (me.width * (gotoIdx - me.index));
                             me.$slipper.wrapper.css({
                                 transition: "none",
                                 transform: "translate3d(" + me.pos + "px, 0 ,0 )"
                             });
-                            me.index = gotoIdx;
+
+                            me.$slipper.state = "moveEnd"; // 상태값 변경 moveEnd
+                            opt.transitionEnd(); // 슬라이더 transitionEnd 콜백
                         }, me.speed);
 
                     }else{
@@ -178,14 +212,14 @@ function slipper(wrapperId, option){
 
     me.next = function(){
         me.move(me.index+1);
-        if(opt.autoPlay) {
-            interval.restart();
+        if(opt.loop && me.autoPlay) {
+            me.intervalFn.restart();
         }
     };
     me.prev = function(){
         me.move(me.index - 1);
-        if(opt.autoPlay) {
-            interval.restart();
+        if(opt.loop && me.autoPlay) {
+            me.intervalFn.restart();
         }
 
     };
@@ -203,28 +237,31 @@ function slipper(wrapperId, option){
         },200);
 
 
-        if(opt.autoPlay){
-            interval.start();
+        if(opt.loop && me.autoPlay){
+            me.intervalFn.start();
         }
     });
 
     
     /*인터벌*/
-    const interval ={
+    me.intervalFn ={
         start: function() {
+            if(!opt.loop){return false;}
             me.$slipper.interval = setInterval(function () {
                 me.move(me.index + 1);
-            }, me.delay)
+            }, me.delay);
+            me.autoPlay = true;
         },
         stop:function () {
+            if(!opt.loop){return false;}
             clearInterval(me.$slipper.interval);
+            me.autoPlay = false;
         },
-
         restart:function () {
-            interval.stop();
-            interval.start();
-            // setTimeout(function () {
-            // },me.speed);
+            if(!opt.loop){return false;}
+            me.intervalFn.stop();
+            me.intervalFn.start();
+            me.autoPlay = true;
         }
 
     };
