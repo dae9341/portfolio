@@ -3,7 +3,9 @@
   >a{display: flex; align-items: center; border: 1px solid $COLOR_DARKGRAY; border-radius: 2px; width: 20px; height: 20px; justify-content: center;}
   &__prevBtn{}
   &__nextBtn{}
-  &__page{margin: 0 10px;}
+  &__page{margin: 0 10px;
+    &__now{font-weight: bold;}
+  }
   &__toggleAuto{margin-left: 5px;}
 
 }

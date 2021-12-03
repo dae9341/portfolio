@@ -10,11 +10,11 @@ function __promSlider(wrapperId,option) {
 
     var $wrapper = $(wrapperId);
     var $page = $wrapper.find(".m-slipperPaging");
-    var $pagePrev = $page.find(".m-slipperPaging__prevBtn");
-    var $pageNext = $page.find(".m-slipperPaging__nextBtn");
-    var $autoPlay = $page.find(".m-slipperPaging__toggleAuto");
-    var $nowIdx = $page.find(".now");
-    var $len = $page.find(".len");
+    var $pagePrev = $page.find(".m-slipperPaging__prevBtn"); // 이전버튼
+    var $pageNext = $page.find(".m-slipperPaging__nextBtn"); // 다음버튼
+    var $autoPlay = $page.find(".m-slipperPaging__toggleAuto"); // autoPlay 버튼
+    var $nowIdx = $page.find(".m-slipperPaging__page__now"); // 현재 페이지 
+    var $len = $page.find(".m-slipperPaging__page__len"); //전체 페이지
 
     function initSlipper(){
         me.$slider = new slipper( wrapperId+" .slipper-container", {
@@ -29,7 +29,8 @@ function __promSlider(wrapperId,option) {
             }
         });
 
-        if(opt.autoPlay){
+        // 자동모드 체크 후 세팅 
+        if(opt.autoPlay){ 
             $autoPlay.addClass("playing");
             $autoPlay.text("stop");
         }else{
@@ -37,6 +38,7 @@ function __promSlider(wrapperId,option) {
             $autoPlay.text("play");
         }
 
+        // 페이징 세팅
         function pageSet(){
             $nowIdx.text(me.$slider.page);
             $len.text(me.$slider.$slipper.len);
@@ -66,14 +68,14 @@ function __promSlider(wrapperId,option) {
 
     me.autoPlay = function(clickItem){
         $(clickItem).addClass("playing");
+        $autoPlay.text("stop");
         me.$slider.intervalFn.start();
-        $autoPlay.text("stop")
     };
 
     me.autoPlayStop = function(clickItem){
         $(clickItem).removeClass("playing");
-        me.$slider.intervalFn.stop();
         $autoPlay.text("play");
+        me.$slider.intervalFn.stop();
     };
 
     me.togglePlay = function(clickItem){

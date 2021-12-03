@@ -9,9 +9,9 @@
 <div class="m-slipperPaging">
     <a href="#" class="m-slipperPaging__prevBtn"><span><</span></a>
     <div class="m-slipperPaging__page">
-        <span class="now">1</span>
+        <span class="m-slipperPaging__page__now">1</span>
         <span>/</span>
-        <span class="len">3</span>
+        <span class="m-slipperPaging__page__len">3</span>
     </div>
     <a href="#" class="m-slipperPaging__nextBtn"><span>></span></a>
     <a href="#" class="m-slipperPaging__toggleAuto"><span>play</span></a>
