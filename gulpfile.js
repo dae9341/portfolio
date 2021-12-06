@@ -1,176 +1,129 @@
 'use strict';
 
-var gulp = require("gulp");
-var sass = require("gulp-sass"); // sass 컴파일
-var concat = require("gulp-concat"); // concat
+const {src,dest,watch, series, parallel} = require("gulp");
+const sass = require("gulp-sass"); // sass 컴파일
+const concat = require("gulp-concat"); // concat
+const babel = require('gulp-babel'); // babel
+const uncss = require('gulp-uncss'); // 사용하지않는 css
+
 // var rev = require("gulp-rev"); // rev (hash값으로 리비전번호를 부여)
-var babel = require('gulp-babel'); // babel
-var uncss = require('gulp-uncss');
 
+const path={
+    root: "../portfolio/", //root
+    src: "../portfolio/src/", // src
+    entry: "../portfolio/src/entry/", // 엔트리 경로
+    vendor: "../portfolio/src/entry/vendor/", // 벤더 경로
+    uikit: "../portfolio/src/inc/uikit/", // uikit 경로
+    page: "../portfolio/src/page/", //page 경로
+    independent: "../portfolio/src/independent/", // independent 경로
+};
 
-var root = "../portfolio/"; // root
-var src = "src/";  // src
-var entry = root+src+"entry/"; // 엔트리 경로
-var vendor = entry+"vendor/"; // 벤더 경로
-var uikit = root+src+"inc/uikit/"; // uikit 경로
-var page = root+src+"page/"; // page 경로
-var dist_css = root+src+"css/"; //디스트CSS 경로
-var dist_js = root+src+"js/"; //디스트CSS 경로
+const dist={
+    css:"../portfolio/src/css/", //디스트CSS 경로
+    js:"../portfolio/src/js/", //디스트CSS 경로
+    independent_css: "../portfolio/src/independent/css/" // independent 디스트 CSS 경로
+};
 
+// sass 빌드
+function sass_build(cb){
+    src([path.entry+"scss/*.scss"])
+        .pipe(sass().on("error", sass.logError))
+        .pipe(dest(dist.css));
+    cb();
+}
 
-//독립모듈
-var independent = root+src+"independent/"; // independent 경로
-var independent_dist_css = independent+"/css/"; //디스트 CSS 경로
-
-
-/* sass 컴파일 */
-gulp.task("sass", function () {
-   return gulp.src(entry+"scss/*.scss")
-       .pipe(sass().on("error", sass.logError))
-       .pipe(gulp.dest(dist_css));
-});
-
-/* js_vendor 컨캣 */
-gulp.task("js:vendor",function () {
-    return gulp.src([vendor+"jQuery_3.5.1.js", vendor+"Swiper_6.4.10.js", vendor+"slipper.js" , vendor+"lodash_4.17.15.js" , vendor+"react.production.min.js", vendor+"react-dom.production.min.js"])
-        .pipe(concat("kdh_vendor.js"))
-        .pipe(gulp.dest(dist_js))
-});
-
-/* css_vendor 컨캣 */
-gulp.task("css:vendor", function () {
-    return gulp.src(vendor+"css/*.css")
+// 벤더 css 통합,dist
+function css_vendor(cb){
+    src([path.vendor+"css/*.css"])
         .pipe(concat("kdh_vendor.css"))
-        .pipe(gulp.dest(dist_css));
-});
+        .pipe(dest(dist.css));
+    cb();
+}
 
-gulp.task("js:base" , function () {
-    return gulp.src([entry+"js/kdh_base.js"])
-        .pipe(babel({
-            presets:['@babel/preset-env']
-        }))
-        .pipe(gulp.dest(dist_js));
-});
-
-/*js uikit atom 컨캣*/
-gulp.task("js:atom",function () {
-    return gulp.src([uikit+"_atom/**/*.js",entry+"js/kdh_uikit_atom.js"])
-        .pipe(concat("kdh_uikit_atom.js"))
+function js_vendor(cb){
+    src([path.vendor+"jQuery_3.5.1.js", path.vendor+"Swiper_6.4.10.js", path.vendor+"slipper.js" , path.vendor+"lodash_4.17.15.js" , path.vendor+"react.production.min.js", path.vendor+"react-dom.production.min.js"])
+        .pipe(concat("kdh_vendor.js"))
+        .pipe(dest(dist.js));
+    cb();
+}
+function jsBuildFn(srcList,concatFile,destSrc){
+    src(srcList)
+        .pipe(concat(concatFile))
         .pipe(babel({
             presets:['@babel/preset-env'],
             plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
         }))
-        .pipe(gulp.dest(dist_js))
-});
+        .pipe(dest(destSrc))
+}
 
-/*js uikit module 컨캣*/
-gulp.task("js:module",function () {
-    return gulp.src([uikit+"_module/**/*.js",uikit+"_module/**/*.jsx",entry+"js/kdh_uikit_module.js"])
-        .pipe(concat("kdh_uikit_module.js"))
-        .pipe(babel({
-            presets:['@babel/preset-env'],
-            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
-        }))
-        .pipe(gulp.dest(dist_js))
-});
+function js_build(cb){
+    jsBuildFn([path.uikit+"common/**/*.js",path.entry+"js/kdh_uikit_common.js"],"kdh_uikit_common.js",dist.js);
+    jsBuildFn([path.entry+"js/kdh_base.js"],"kdh_base.js",dist.js);
+    jsBuildFn([path.uikit+"_atom/**/*.js",path.entry+"js/kdh_uikit_atom.js"],"kdh_uikit_atom.js",dist.js);
+    jsBuildFn([path.uikit+"_module/**/*.js",path.uikit+"_module/**/*.jsx",path.entry+"js/kdh_uikit_module.js"],"kdh_uikit_module.js",dist.js);
+    jsBuildFn([path.uikit+"_component/**/*.js",path.uikit+"_component/**/*.jsx",path.entry+"js/kdh_uikit_component.js"],"kdh_uikit_component.js",dist.js);
+    jsBuildFn([path.uikit+"_template/**/*.js",path.entry+"js/kdh_uikit_template.js"],"kdh_uikit_template.js",dist.js);
+    cb();
+}
 
-/*js uikit component 컨캣*/
-gulp.task("js:component",function () {
-    return gulp.src([uikit+"_component/**/*.js",uikit+"_component/**/*.jsx",entry+"js/kdh_uikit_component.js"])
-        .pipe(concat("kdh_uikit_component.js"))
-        .pipe(babel({
-            presets:['@babel/preset-env'],
-            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
-        }))
-        .pipe(gulp.dest(dist_js))
-});
+function sass_watch(cb){
+    watch([path.entry+"scss/*.scss", path.uikit+"**/*.scss",path.page+"**/*.scss"],series(sass_build));
+    cb();
+}
+function js_watch(cb){
+    watch([path.entry+"js/*.js", path.uikit+"**/*.js",path.uikit+"**/*.jsx", path.page+"**/*.js"],series(js_build));
+    cb();
+}
 
-/*js uikit template 컨캣*/
-gulp.task("js:template",function () {
-    return gulp.src([uikit+"_template/**/*.js",entry+"js/kdh_uikit_template.js"])
-        .pipe(concat("kdh_uikit_template.js"))
-        .pipe(babel({
-            presets:['@babel/preset-env'],
-            plugins:['transform-react-jsx', "@babel/plugin-proposal-class-properties"]
-        }))
-        .pipe(gulp.dest(dist_js))
-});
-
-/*js uikit common 컨캣*/
-gulp.task("js:common",function () {
-    return gulp.src([uikit+"common/**/*.js",entry+"js/kdh_uikit_common.js"])
-        .pipe(concat("kdh_uikit_common.js"))
-        .pipe(babel({
-            presets:['@babel/preset-env']
-        }))
-        .pipe(gulp.dest(dist_js))
-});
-
-gulp.task("js" , function () {
-    return gulp.src([uikit+"**/*.js",entry+"js/*.js"])
-        .pipe(babel({
-            presets:['@babel/preset-env']
-        }))
-        .pipe(gulp.dest(dist_js));
-});
-
-/* sass 와치 */
-gulp.task("sass:watch",function () {
-    return gulp.watch([entry+"scss/*.scss", uikit+"**/*.scss",page+"**/*.scss"],gulp.series("sass"));
-});
-
-/* js 와치 */
-gulp.task("js:watch", function () {
-    return gulp.watch([entry+"js/*.js", uikit+"**/*.js",uikit+"**/*.jsx", page+"**/*.js"],gulp.parallel(["js:atom","js:module","js:component","js:template","js:base","js:common"]));
-});
-
+exports.sassWatch = sass_watch;
+exports.jsWatch = js_watch;
 
 /* 실행부 */
+exports.vendor = parallel([css_vendor,js_vendor]); //벤더 통합
+exports.kdh = series([css_vendor,js_vendor,sass_build,js_build]); //빌드 통합
+exports.w = series([css_vendor,js_vendor,sass_build,js_build], parallel([sass_watch,js_watch])); //전체 빌드 후 와치
 
-/* 벤더 통합 */
-gulp.task("vendor", gulp.parallel(["js:vendor","css:vendor"]));
 
-/* 빌드 통합 */
-gulp.task("kdh", gulp.series(["vendor","sass","js:base","js:common","js:atom","js:module","js:component","js:template"]));
 
-/* 와치 통합 */
-gulp.task("w" , gulp.series(["kdh"], gulp.parallel(["sass:watch","js:watch"])) );
 
+/*독립모듈*/
 function slipperSCSSDist (){
     return new Promise(function (res) {
-        gulp.src(independent+"slipper/*.scss")
+        src(path.independent+"slipper/*.scss")
             .pipe(sass().on("error", sass.logError))
             .pipe(concat("slipper.css"))
-            .pipe(gulp.dest(vendor+"css/"))
+            .pipe(dest(path.vendor+"css/"))
         res();
     });
 }
 function slipperJSDist (){
     return new Promise(function (res) {
-        gulp.src(independent+"slipper/*.js")
+        src(path.independent+"slipper/*.js")
             .pipe(concat("slipper.js"))
-            .pipe(gulp.dest(vendor));
+            .pipe(dest(path.vendor));
         res();
     });
 }
 
-exports.slipperDist = gulp.series(slipperSCSSDist,slipperJSDist);
-
-/*임시*/
-
-/* sass 컴파일 */
-gulp.task("sass:inde", function () {
-    return gulp.src(independent+"**/*.scss")
-        .pipe(sass().on("error", sass.logError))
+function sassInde(cb){
+    src([path.independent+"**/*.scss"])
+        .pipe(sass().on("error",sass.logError))
         .pipe(concat("include.css"))
-        .pipe(gulp.dest(independent_dist_css))
-});
+        .pipe(dest(dist.independent_css))
+    cb();
+}
 
-gulp.task("w:inde", function () {
-    return gulp.watch([independent+"**/*.scss"],gulp.series("sass:inde"));
-});
+function watchInde(cb){
+    watch([path.independent+"**/*.scss"],series(sassInde));
+    cb();
+}
 
+/*독립모듈 실행부*/
+exports["sass:inde"]= series(sassInde);
+exports["w:inde"]= series(watchInde);
+exports.slipperDist = series(slipperSCSSDist,slipperJSDist);
 
+/*
 
 gulp.task("uncss", function(){
     return gulp.src([independent+'slipper/slipper.scss', independent+'selectBox/selectBox.scss'])
@@ -181,4 +134,4 @@ gulp.task("uncss", function(){
         }))
         .pipe(concat('scssTest.scss'))
         .pipe(gulp.dest(root+'test'));
-})
+})*/

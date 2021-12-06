@@ -19,10 +19,6 @@
   }
 }
 
-.slipper-item.-cloneItem{
-  &:after{content:'clone'; position: absolute; top:0; left: 0;}
-}
-
 .slipper-pagination{
   position: absolute; bottom:10px; left: 0; width: 100%;display: flex;align-items: center;justify-content: center;
   .slipper-pagination-dot{

@@ -27,12 +27,6 @@
   .slipper-btns > a.-disabled {
     opacity: 0.5; }
 
-.slipper-item.-cloneItem:after {
-  content: 'clone';
-  position: absolute;
-  top: 0;
-  left: 0; }
-
 .slipper-pagination {
   position: absolute;
   bottom: 10px;

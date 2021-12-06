@@ -1,0 +1,180 @@
+#_pop_timer{
+    width: 1000px;
+    height: 780px;
+    position: absolute;
+    top: 116px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 21;
+    overflow: hidden;
+    display: none;
+}
+#_pop_timer:after{
+    content: '';
+    clear: both;
+}
+#_pop_timer.on{
+    display: block;
+}
+
+#_pop_timer_wrap{
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.25);
+    border: 3px solid #ffffff;
+}
+
+
+/*header*/
+#_pop_timer_header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #e2edf3;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#_pop_timer_header span{
+    font-family: NotoSansCJKkr-Medium, sans-serif;
+    font-size: 20px;
+    line-height: 50px;
+    margin-left: 25px;
+}
+
+._btn_timer_close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    background-image: url("../../img/modules/btn_pop_close.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    border: none;
+}
+
+
+/*content*/
+#_pop_timer_content{
+    width: 100%;
+    height: 734px;
+    background: linear-gradient(180deg, #efce4a 50%, #efc243 50%);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+#_pop_timer_container{
+    position: relative;
+    margin: 0 auto;
+    width: 720px;
+    height: 100%;
+    background-image: url("../../img/modules/timer/bg_timer.png");
+    background-repeat: no-repeat;
+    background-position: center 38px;
+}
+
+#_pop_timer_content ._set_timer{
+    color: #ffffff;
+    font-size: 130px;
+    font-weight: bold;
+    position: relative;
+    width: 430px;
+    top: 210px;
+    left: 136px;
+    text-align: center;
+}
+#_pop_timer_content input{
+    background-color: transparent;
+    width: 150px;
+    font-size: 130px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+
+}
+#_pop_timer_content ._set_timer span{
+    position: relative;
+    top: -10px;
+}
+
+#_pop_timer_content ._btn_timer{
+    position: relative;
+    width: 340px;
+    top: 300px;
+    margin: 0 auto;
+}
+#_pop_timer_content ._btn_timer_start,
+#_pop_timer_content ._btn_timer_reset{
+    width: 140px;
+    height: 60px;
+    background-color: #efce4a;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 1px 18px 1px 1px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    font-size: 25px;
+    line-height: 60px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#_pop_timer_content ._btn_timer_reset{
+    margin-left: 50px;
+}
+#_pop_timer_content ._btn_timer_start.clicked:hover{
+    background-color: #efce4a;
+    color: #000000;
+}
+
+#_pop_timer_content ._btn_timer_start:hover,
+#_pop_timer_content ._btn_timer_reset:hover {
+    background-color: #ff6633;
+    color: #ffffff;
+}
+#_pop_timer_content ._btn_timer_bel{
+    position: relative;
+    top: -70px;
+    width: 34px;
+    height: 67px;
+    margin: 0 auto;
+    background-image: url("../../img/modules/timer/btn_timer_bel.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: none;
+}
+#_pop_timer_content ._timer_shadow{
+    position: absolute;
+    top: 10px;
+    width: 687px;
+    height: 687px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.blinking{
+    -webkit-animation:blink 0.5s ease-in-out 2 alternate;
+    -moz-animation:blink 0.5s ease-in-out 2 alternate;
+    animation:blink 0.5s ease-in-out 2 alternate;
+    /*animation-iteration-count: 2;*/
+}
+@-webkit-keyframes blink{
+    0% {opacity:0.5;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0.5;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0.5;}
+    100% {opacity:1;}
+}
+

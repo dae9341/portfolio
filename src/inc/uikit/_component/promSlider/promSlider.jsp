@@ -56,7 +56,7 @@
             initIdx: 0,
             speed:500,
             autoPlay:false,
-            transition:"slide",
+            transition:"none",
             delay:2000,
         });
     })
