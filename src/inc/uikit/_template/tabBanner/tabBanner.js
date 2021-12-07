@@ -8,8 +8,8 @@ function __tabBanner(wrapperId, option){
 
     var opt = $.extend({
         startIdx : 0,
-        isPlay:true,
-        delay:1000
+        autoplay:false,
+        delay:3000
     },option);
 
     //활성화 제거
@@ -25,51 +25,62 @@ function __tabBanner(wrapperId, option){
     }
 
 
-    me.change = function (nowIdx, toIdx){
-
-        if(bannerLength <= toIdx){
-            toIdx = 0;
+    me.change = function (gotoIdx){
+        if(bannerLength <= gotoIdx){
+            gotoIdx = 0;
         }
-
-        removeOn(nowIdx);
-        activeOn(toIdx);
-
-        me.index = toIdx;
+        removeOn(me.index);
+        activeOn(gotoIdx);
+        me.index = gotoIdx;
     };
 
 
     me.init = function (){
         me.index = opt.startIdx;
-        me.isPlay = opt.isPlay;
+        me.autoplay = opt.autoplay;
 
-        $banner.find("li").eq(me.index).addClass("on");
-        $tab.find("div").eq(me.index).addClass("on");
+        activeOn(me.index);
+        if(me.autoplay){
+            me.intervalFn.start();
+        }
 
-        setInterval(function (){
-            if(me.isPlay){
-                me.change(me.index, me.index+1);
-            }else{
-                return;
-            }
-        },opt.delay);
 
         $wrapperId.on("mouseenter",function (){
-            me.isPlay = false;
-            console.log(me.isPlay);
+            console.log("mouseenter");
+            if(me.autoplay) {
+                me.intervalFn.stop();
+            }
         });
 
         $wrapperId.on("mouseleave",function (){
-            me.isPlay = true;
-            console.log(me.isPlay);
+            console.log("mouseleave");
+            if(me.autoplay) {
+                me.intervalFn.start();
+            }
         });
 
         $tab.find("div").each(function (){
             var $me = $(this);
 
             $me.find(">a").on("mouseover",function (){
-                me.change(me.index, $me.index());
+                me.change($me.index());
             });
         });
+    };
+
+    me.intervalFn = {
+        start:function(){
+            me.interval = setInterval(function (){
+                me.change(me.index+1);
+            },opt.delay);
+        },
+        stop:function(){
+            clearInterval(me.interval);
+        },
+        restart:function(){
+            me.intervalFn.stop();
+            me.intervalFn.start();
+        }
     };
 
 

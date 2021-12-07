@@ -120,7 +120,7 @@ function watchInde(cb){
 
 /*독립모듈 실행부*/
 exports["sass:inde"]= series(sassInde);
-exports["w:inde"]= series(watchInde);
+exports["w:inde"]= series(sassInde,watchInde);
 exports.slipperDist = series(slipperSCSSDist,slipperJSDist);
 
 /*

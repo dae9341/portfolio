@@ -4,10 +4,11 @@ function slipper(wrapperId, option){
         initIdx: 0, // 시작 인덱스 (범위 벗어날 경우 0번으로세팅
         speed:300, // 슬라이딩 속도
         loop:true, // 무한루프 사용여부
-        autoPlay:true, // 자동모드
+        autoPlay:false, // 자동모드
         transition:"slide", // "slide": 슬라이드효과 , "none" : none/block 효과,    //미개발 "fade" : fadein/fadeout 효과
         delay:3000, // 자동모드시 다음페이지로 대기시간
         pagination:"dot", // dot, number, progressbar
+        isScrollSlip:true,
         initSlipper:function () { // 슬라이더 시작 콜백
             console.log("init");
         },
@@ -58,17 +59,17 @@ function slipper(wrapperId, option){
             var $firstItem = me.$slipper.items.eq(0);
             var $lastItem = me.$slipper.items.eq(me.$slipper.len-1);
 
-            var aaa="";
+            var pageDots="";
             for(var i=0; i<me.$slipper.len; i++){
                 var on = "";
                 if(i==me.index){
                     on="-on"
                 }
-                aaa+="<div class='slipper-pagination-dot "+on+ "'  >"+(i+1)+"</div>"
+                pageDots+="<div class='slipper-pagination-dot "+on+ "'  >"+(i+1)+"</div>"
             };
 
             me.$slipper.pagination.addClass("-"+opt.pagination);
-            me.$slipper.pagination.append(aaa);
+            me.$slipper.pagination.append(pageDots);
 
             if(opt.loop){ //무한루프일때 clone 생성
                 var $cloneFirstItem = $firstItem.clone().addClass("-cloneItem");
@@ -240,6 +241,15 @@ function slipper(wrapperId, option){
         if(opt.loop && me.autoPlay){
             me.intervalFn.start();
         }
+
+
+        if(opt.isScrollSlip){
+            me.$slipper.container.scroll(function() {
+                console.log("scrolling slipper !");
+            });
+
+        }
+
     });
 
     
