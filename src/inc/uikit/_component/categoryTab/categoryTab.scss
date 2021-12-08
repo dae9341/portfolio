@@ -1,0 +1,9 @@
+.c-categoryTab{
+  width: 100%;
+  $border:1px solid #333;
+  &__list{display: flex; align-items: center; justify-content: space-between;border: $border;
+    >a{display: block; width: 100%; border-left: $border;
+      &:first-child{border:0;}
+    }
+  }
+}

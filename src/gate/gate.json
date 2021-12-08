@@ -10,6 +10,7 @@
   {"atomic":"component", "jsp":"itemBasicList__.jsp", "href": "/src/inc/uikit/_component/item/itemBasicList__.jsp", "desc":"전시 > 상품리스트"},
   {"atomic":"component", "jsp":"bannerSwiper__.jsp", "href": "/src/inc/uikit/_component/bannerSwiper/bannerSwiper__.jsp", "desc":"공통 > 배너 스와이퍼"},
   {"atomic":"component", "jsp":"promSlider__.jsp", "href": "/src/inc/uikit/_component/promSlider/promSlider__.jsp", "desc":"공통 > 프로모션슬라이더"},
+  {"atomic":"component", "jsp":"categoryTab__.jsp", "href": "/src/inc/uikit/_component/categoryTab/categoryTab__.jsp", "desc":"전시 > 카테고리탭"},
   {"atomic":"module", "jsp":"selectBox__.jsp", "href": "/src/inc/uikit/_module/selectBox/selectBox__.jsp", "desc":"공통 > 디자인 셀렉트"},
   {"atomic":"module", "jsp":"itemBasic__.jsp", "href": "/src/inc/uikit/_module/item/itemBasic__.jsp", "desc":"공통 > 상품모듈"},
   {"atomic":"module", "jsp":"productGrid__.jsp", "href": "/src/inc/uikit/_module/product/productGrid/productGrid__.jsp", "desc":"공통 > 상품모듈(그리드 UI)"},
